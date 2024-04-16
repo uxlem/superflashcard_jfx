@@ -9,7 +9,7 @@ Tham khảo https://openjfx.io/openjfx-docs/#introduction
 
 2. Tạo một project trống bằng IDE của mọi người
 
-3. Copy thư mục src trên này paste đè vào thư mục src của mọi người
+3. Thêm các file trong thư mục src trên này vào project vừa tạo
 
 4. Thêm thư viện javafx-sdk vào Classpath của project, thêm VM arguments khi chạy, hướng dẫn bên dưới, nếu đọc hướng dẫn khó hiểu quá hãy xem youtube nhé 🥺
 
