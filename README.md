@@ -66,7 +66,7 @@ Vui lòng xem trang tham khảo đã ghi ở trên, có cả hướng dẫn cho 
     * Mở `Run > Run Configurations`
         * Hoặc là chọn vào `Java Applications` rồi bấm `New Configurations`
         * Hoặc là chọn luôn Run Configurations đang có, như hình (đánh dấu số 1) 
-        ![alt text](image.png)
+        ![alt text](mymd/image.png)
 
     * Chọn thẻ `Arguments`, thêm vào phần `VM arguments` dòng sau:
 
