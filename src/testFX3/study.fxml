@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="testFX3.StudyController">
+   <children>
+      <Text fx:id="frontTitle" layoutX="166.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nội dung mặt trước" textAlignment="CENTER" wrappingWidth="267.7367401123047" />
+      <ScrollPane layoutX="86.0" layoutY="216.0" prefHeight="90.0" prefWidth="426.0">
+         <content>
+            <Text fx:id="back" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="422.9367218017578">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+         </content>
+      </ScrollPane>
+      <Rectangle fx:id="frontRect" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="124.0" layoutX="65.0" layoutY="60.0" stroke="BLACK" strokeType="INSIDE" width="474.0" />
+      <ScrollPane layoutX="74.0" layoutY="70.0" prefHeight="104.0" prefWidth="454.0">
+         <content>
+            <Text fx:id="front" strokeType="OUTSIDE" strokeWidth="0.0" text="Em giờ đang nơi đâu, có nhớ đến anh phút chốc cô đơn&#10;Tìm lại kí ức năm tháng bên nhau, mà ta đã đắm say&#10;Bao hạt mưa bên hiên&#10;Làm giọt lệ rơi mãi, rơi mãi không ngừng&#10;Tình người tàn phai, như điếu thuốc trên môi&#10;Mà anh đâu có hay&#10;Người vội quay bước đi, chẳng để lại câu chi&#10;Anh níu em về bên anh&#10;Nhưng trái ngang vỡ tan, vỡ tan thật rồi&#10;Giấc mộng hạnh phúc, em cũng đã mang về nơi xa kia&#10;Giờ còn lại nỗi đau, mình anh nhớ thương&#10;Bóng đêm bủa vây" textAlignment="CENTER" wrappingWidth="450.00003433227533">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+         </content>
+      </ScrollPane>
+      <Button fx:id="revealButton" alignment="CENTER" contentDisplay="CENTER" layoutX="246.0" layoutY="346.0" mnemonicParsing="false" onAction="#revealBack" text="Lộ mặt sau/đáp án" />
+      <Button fx:id="nextCardButton" alignment="CENTER" layoutX="381.0" layoutY="346.0" mnemonicParsing="false" onAction="#goToNext" prefHeight="26.0" prefWidth="115.0" text="Thẻ tiếp theo" />
+      <ToolBar prefHeight="40.0" prefWidth="600.0">
+        <items>
+          <Button fx:id="MenuButton" mnemonicParsing="false" onAction="#backToMenu" text="Trở về menu" />
+        </items>
+      </ToolBar>
+      <Button fx:id="editCardButton" alignment="CENTER" layoutX="107.0" layoutY="346.0" mnemonicParsing="false" onAction="#goToEdit" prefHeight="26.0" prefWidth="115.0" text="Sửa thẻ" />
+      <Text fx:id="cardNumString" layoutX="398.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bộ thẻ có ... thẻ" />
+   </children>
+</AnchorPane>

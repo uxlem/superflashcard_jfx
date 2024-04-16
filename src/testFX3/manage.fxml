@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="testFX3.ManageCardsController">
+   <children>
+      <Rectangle height="37.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.6074073910713196" green="0.8167901039123535" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.24331383407115936" green="0.4982287287712097" blue="0.8315789699554443" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill></Rectangle>
+      <HBox alignment="CENTER_RIGHT" layoutX="300.0" prefHeight="37.0" prefWidth="297.0" spacing="15.0">
+         <children>
+            <Button fx:id="detailButton" mnemonicParsing="false" onAction="#goToDetails" prefHeight="26.0" prefWidth="107.0" text="Xem riêng thẻ" />
+            <Button fx:id="editCardButton" mnemonicParsing="false" onAction="#goToEdit" text="Sửa thẻ" />
+            <Button fx:id="deleteCardButton" mnemonicParsing="false" text="Xoá thẻ" />
+         </children>
+         <padding>
+            <Insets right="20.0" />
+         </padding>
+      </HBox>
+      <Button fx:id="newCardButton" layoutX="167.0" layoutY="6.0" mnemonicParsing="false" onAction="#goToCreateNewCard" text="Thêm thẻ" />
+      <Button fx:id="MenuButton" layoutX="6.0" layoutY="6.0" mnemonicParsing="false" onAction="#backToMenu" text="Trở về Menu" />
+      <TableView fx:id="cardTable" layoutX="15.0" layoutY="53.0" prefHeight="324.0" prefWidth="570.0">
+        <columns>
+            <TableColumn fx:id="frontCol" editable="false" prefWidth="250.0" text="Mặt trước" />
+            <TableColumn fx:id="backCol" editable="false" prefWidth="250.0" text="Mặt sau" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>
