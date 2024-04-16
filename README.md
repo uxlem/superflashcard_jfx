@@ -3,17 +3,22 @@
 
 Tham khảo https://openjfx.io/openjfx-docs/#introduction
 
-1. Tải javafx-**sdk** tại https://gluonhq.com/products/javafx/ (chú ý chọn tải sdk), giải nén, trong đó có thư mục `lib`
+Tóm tắt: copy thư mục src trên này vào project trên máy mình và chạy hoy
+
+Trong trường hợp ae nào chưa biết thì hướng dẫn cụ thể dưới này nhé
+
+0. (Bước chuẩn bị) Tải javafx-**sdk** tại https://gluonhq.com/products/javafx/ (chú ý chọn tải sdk), giải nén, trong đó có thư mục `lib`
 
     Mình dùng bản 21.0.2 LTS
 
 2. Tạo một project trống bằng IDE của mọi người
 
-3. Thêm các file trong thư mục src trên này vào project vừa tạo (copy)
+3. Thêm các file trong thư mục src trên này vào project vừa tạo (copy paste)
 
     Với IDE Eclipse, sau khi copy file vào trong thư mục src, bấm `F5` để Refresh để thấy các file đã copy trong `Package Explorer`.
 
-5. Thêm thư viện javafx-sdk vào Classpath của project, thêm VM arguments khi chạy, hướng dẫn bên dưới, nếu đọc hướng dẫn khó hiểu quá hãy xem youtube nhé 🥺
+5. Thêm thư viện javafx-sdk vào Classpath của project, thêm VM arguments khi chạy 
+    Hướng dẫn bên dưới, nếu đọc hướng dẫn khó hiểu quá hãy xem youtube nhé 🥺
 
 ### Với IDE IntellJ
 Xem trang tham khảo đã ghi ở trên, có cả hướng dẫn cho Eclipse và NetBeans.
