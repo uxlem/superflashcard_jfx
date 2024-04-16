@@ -27,10 +27,15 @@ Xem trang tham khảo đã ghi ở trên, có cả hướng dẫn cho Eclipse v�
     * Chọn `New` và ghi tên thư viện mới của mình, ví dụ: `JavaFX21`
     * Bấm chọn thư viện vừa tạo, chọn `Add External JARs`, tìm đến thư mục `lib` trong thư mục chứa javafx-sdk, chọn thư mục lib đó hoặc tất cả các file .jar bên trong.
     * `Apply and Close`.
+    
+    GIF minh hoạ:
+    ![alt text](mymd/eclipse_kw0VQAemoL.gif)
 
     * Mở `Project > Properties > Java Build Path > Libraries`
     * Bấm chọn `Classpath`, chọn `Add Library... > User Library` và chọn thư viện vừa tạo ở trên.
     * `Apply and Close`.
+
+    ![alt text](mymd/eclipse_7ZiJ5Ybc6W.gif)
 
 * Nếu đã cài e(fx)clipse
     * Mở `Window > Preferences > JavaFX`
@@ -46,10 +51,6 @@ Xem trang tham khảo đã ghi ở trên, có cả hướng dẫn cho Eclipse v�
 
              --module-path $PATH_TO_FX$ --add-modules javafx.controls,javafx.fxml
 
-        trong đó `$PATH_TO_FX$` là địa chỉ của thư mục `lib` của javafx-sdk. Nếu đã có `$PATH_TO_FX$` sẵn trong `Environment Variables` thì không cần phải thay cụ thể như trong ảnh trên.
+        trong đó `$PATH_TO_FX$` là địa chỉ của thư mục `lib` của javafx-sdk. Nếu đã có `$PATH_TO_FX$` sẵn trong `Environment Variables` thì không cần phải thay cụ thể như trong ảnh trên. 🤔
 
 ### Với IDE NetBeans
-
-
-
-
