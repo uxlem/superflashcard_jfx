@@ -7,7 +7,7 @@ Copy thư mục src trên này vào project trống trên máy mình, thêm VM A
 
 Tham khảo https://openjfx.io/openjfx-docs/#introduction và youtube
 
-Trong trường hợp ae nào chưa biết thì 
+Trong trường hợp ae nào cần hướng dẫn cụ thể hơn thì 
 
 ### Hướng dẫn cụ thể
 
