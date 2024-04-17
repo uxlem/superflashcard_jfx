@@ -3,7 +3,7 @@
 ## Hướng dẫn dịch và chạy siêu ứng dụng
 
 ### Tóm tắt: 
-* *ungdung_jfx/releases/tag/pre)
+* Tải [thư mục/zip src ở trên hoặc tại đây](https://github.com/uxlem/sieuungdung_jfx/releases/tag/pre)
 
 * Copy thư mục src trên này vào project trống trên máy của mọi người, thêm VM Arguments và chạy hoy
 
