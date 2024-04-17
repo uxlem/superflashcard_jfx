@@ -97,7 +97,7 @@ Sau đó ta thêm Library vào Classpath của Project:
 
     Vì một lí do gì đấy chưa rõ, khi mình bấm thêm mỗi thư mục `lib` thì nó hơi lỗi lỗi xíu, còn khi vào hẳn trong thư mục `lib` để thêm .jar thì sẽ bình thường.
 
-2. Thêm library vào Classpath khi compile và Modulepath khi chạy *(mình hiểu là như thế, sai mn thông cảm)*
+2. Thêm library vào Classpath khi compile và Modulepath khi chạy
     
     Chọn project đang mở, `File > Project Properties` hoặc `chuột phải > Properties`
 
