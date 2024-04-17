@@ -89,7 +89,7 @@ Sau đó ta thêm Library vào Classpath của Project:
     Nếu đã có `$PATH_TO_FX$` sẵn trong `Environment Variables` thì không cần phải thay cụ thể như trong ảnh trên. 🤔
 
 #### Với IDE NetBeans
-1. Tạo 1 Library gồm các file .jar của thư mục `lib`
+1. Tạo 1 Library gồm các file .jar của thư mục `lib` trong javafx-sdk
 
     Chọn `Tools > Libraries > New Library`, điền tên thư viện mới, chọn `Add JAR/Folder...`
 
