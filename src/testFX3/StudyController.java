@@ -75,6 +75,7 @@ public class StudyController implements Initializable {
 		Parent root = loader.load();
 		EditController EditSceneController = loader.getController();
 		EditSceneController.setPreviousScene(3);
+		EditSceneController.setPrevSelectedCard(DeckList.defaultDeck.CardList.get(currentCardIndex));
 		EditSceneController.initialize(null, null);
 		currentStage.setScene(new Scene(root));
 		currentStage.show();

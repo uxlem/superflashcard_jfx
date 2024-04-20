@@ -16,8 +16,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class ManageCardsController implements Initializable{
@@ -39,7 +42,7 @@ public class ManageCardsController implements Initializable{
 
     @FXML
     private TableView<Card> cardTable;
-
+    
     @FXML
     private TableColumn<Card, String> frontCol;
     
@@ -51,6 +54,21 @@ public class ManageCardsController implements Initializable{
     	frontCol.setCellValueFactory(new PropertyValueFactory<>("front"));
     	backCol.setCellValueFactory(new PropertyValueFactory<>("back"));
     	cardTable.setItems(DeckList.defaultDeck.CardList);
+    	cardTable.setFixedCellSize(24.0);
+    	editCardButton.setDisable(true);
+    	
+//    	cardTable.setRowFactory(tv -> {
+//    		TableRow<Card> row = new TableRow<>();
+//    		row.setOnMouseClicked(event -> {
+//    			if (! row.isEmpty() && event.getButton()==MouseButton.PRIMARY 
+//    					&& event.getClickCount() == 2)
+//    			{
+//    				Card clickedRow = row.getItem();
+//    			}
+//    		});
+//    		return row;
+//    	});
+    	
     }
     
     @FXML
@@ -79,6 +97,8 @@ public class ManageCardsController implements Initializable{
 
     }
 
+    private static Card selectedCard;
+    
     @FXML
     void goToEdit(ActionEvent event) throws IOException {
     	Stage currentStage = (Stage) newCardButton.getScene().getWindow();
@@ -87,9 +107,20 @@ public class ManageCardsController implements Initializable{
 		Parent root = loader.load();
 		EditController EditSceneController = loader.getController();
 		EditSceneController.setPreviousScene(2);
+		EditSceneController.setPrevSelectedCard(selectedCard);
 		EditSceneController.initialize(null, null);
 		currentStage.setScene(new Scene(root));
 		currentStage.show();
+    }
+    
+    @FXML void getSelectedCard(MouseEvent event) {
+    	if (event.getClickCount() == 1) //Checking click
+        {
+    		selectedCard = cardTable.getSelectionModel().getSelectedItem();
+    		if (selectedCard != null) editCardButton.setDisable(false);
+    		else editCardButton.setDisable(true);
+        }
+    	
     }
 
 }

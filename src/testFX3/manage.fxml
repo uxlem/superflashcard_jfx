@@ -34,7 +34,7 @@
          <children>
             <Button fx:id="detailButton" mnemonicParsing="false" onAction="#goToDetails" prefHeight="26.0" prefWidth="107.0" text="Xem riêng thẻ" />
             <Button fx:id="editCardButton" mnemonicParsing="false" onAction="#goToEdit" text="Sửa thẻ" />
-            <Button fx:id="deleteCardButton" mnemonicParsing="false" text="Xoá thẻ" />
+            <Button fx:id="deleteCardButton" mnemonicParsing="false" text="Xoá thẻ..." />
          </children>
          <padding>
             <Insets right="20.0" />
@@ -42,7 +42,7 @@
       </HBox>
       <Button fx:id="newCardButton" layoutX="167.0" layoutY="6.0" mnemonicParsing="false" onAction="#goToCreateNewCard" text="Thêm thẻ" />
       <Button fx:id="MenuButton" layoutX="6.0" layoutY="6.0" mnemonicParsing="false" onAction="#backToMenu" text="Trở về Menu" />
-      <TableView fx:id="cardTable" layoutX="15.0" layoutY="53.0" prefHeight="324.0" prefWidth="570.0">
+      <TableView fx:id="cardTable" layoutX="15.0" layoutY="53.0" onMouseClicked="#getSelectedCard" prefHeight="324.0" prefWidth="570.0">
         <columns>
             <TableColumn fx:id="frontCol" editable="false" prefWidth="250.0" text="Mặt trước" />
             <TableColumn fx:id="backCol" editable="false" prefWidth="250.0" text="Mặt sau" />

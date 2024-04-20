@@ -17,4 +17,11 @@ public class Card {
 	{
 		return this.back;
 	}
+	public void setBack(String newback) {
+		back = newback;
+	}
+	public void setFront(String newfront) {
+		front = newfront;
+	}
+	
 }
