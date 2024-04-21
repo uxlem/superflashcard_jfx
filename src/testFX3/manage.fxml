@@ -34,7 +34,7 @@
          <children>
             <Button fx:id="detailButton" mnemonicParsing="false" onAction="#goToDetails" prefHeight="26.0" prefWidth="107.0" text="Xem riêng thẻ" />
             <Button fx:id="editCardButton" mnemonicParsing="false" onAction="#goToEdit" text="Sửa thẻ" />
-            <Button fx:id="deleteCardButton" mnemonicParsing="false" text="Xoá thẻ..." />
+            <Button fx:id="deleteCardButton" mnemonicParsing="false" onAction="#goToDelete" text="Xoá thẻ..." />
          </children>
          <padding>
             <Insets right="20.0" />

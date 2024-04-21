@@ -6,8 +6,10 @@ import java.util.ResourceBundle;
 
 import javax.swing.GroupLayout.Alignment;
 
+import Repositories.DateRepository;
+import SqlServer.QueryDataAccessObject;
 import cards.Card;
-import cards.DeckList;
+//import cards.DeckList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,8 +69,8 @@ public class EditController implements Initializable{
 			break;
 		case 2:
 		case 3:
-			backTextArea.setText(previously_selectedCard.back);
-			frontTextArea.setText(previously_selectedCard.front);
+			backTextArea.setText(previously_selectedCard.getMatSau());
+			frontTextArea.setText(previously_selectedCard.getMatTruoc());
 			title.setText("Sửa thẻ");
 			
 			break;
@@ -96,7 +98,8 @@ public class EditController implements Initializable{
     void saveCards(ActionEvent event) {
     	String backText = backTextArea.getText().trim();
     	String frontText = frontTextArea.getText().trim();
-    	String looked_up = DeckList.dictionary.lookup(frontText);
+    	Card lookedUpCard = QueryDataAccessObject.findCard(Main.currentConnection, frontText);
+//    	String lookedUpMatTruoc = lookedUpCard.getMatTruoc();
     	if (frontText.equals("") || backText.equals(""))
     	{
     		cardIsBlankText.setText("Có mặt thẻ trống, tạo/sửa thẻ không thành công!");
@@ -108,7 +111,7 @@ public class EditController implements Initializable{
     		switch(previousScene)
     		{
     		case 1:
-    			if (looked_up != null)
+    			if (lookedUpCard != null)
     			{
     				cardIsBlankText.setText("Đã có thẻ trùng mặt trước, tạo thẻ không thành công!");
     				cardIsBlankText.setVisible(true);
@@ -116,14 +119,16 @@ public class EditController implements Initializable{
     			else
     			{
     				cardIsBlankText.setVisible(false);
-    				DeckList.defaultDeck.CardList.add(new Card(frontText,backText));
-    				DeckList.dictionary.dictPut(frontText, backText);
+//    				DeckList.defaultDeck.CardList.add(new Card(frontText,backText));
+//    				DeckList.dictionary.dictPut(frontText, backText);
+    				QueryDataAccessObject.insertCard(new Card(frontText, backText, DateRepository.getDateNow()), Main.currentConnection);
     			}
     			break;
     		case 2:
     		case 3:
-    			String textBeforeEdit = previously_selectedCard.getFront();
-    			if (looked_up != null && looked_up != DeckList.dictionary.lookup(textBeforeEdit))
+//    			String textBeforeEdit = previously_selectedCard.getMatTruoc();
+    			if (lookedUpCard != null &&
+    				lookedUpCard.getId() != previously_selectedCard.getId())
     			{
     				cardIsBlankText.setText("Đã có thẻ (khác thẻ này) trùng mặt trước, sửa thẻ không thành công!");
     				cardIsBlankText.setVisible(true);
@@ -131,9 +136,12 @@ public class EditController implements Initializable{
     			else
     			{
     				cardIsBlankText.setVisible(false);
-					previously_selectedCard.setBack(backText);
-					previously_selectedCard.setFront(frontText);
-					DeckList.dictionary.replace(textBeforeEdit, frontText, backText);
+    				QueryDataAccessObject.editCard(previously_selectedCard, frontText, backText, Main.currentConnection);
+					previously_selectedCard.setMatSau(backText);
+					previously_selectedCard.setMatTruoc(frontText);
+					
+//					DeckList.dictionary.replace(textBeforeEdit, frontText, backText);
+					
     			}
     			break;
     		}

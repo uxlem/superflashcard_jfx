@@ -2,10 +2,12 @@ package testFX3;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
+import SqlServer.QueryDataAccessObject;
 import cards.Card;
-import cards.DeckList;
+//import cards.DeckList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -49,26 +51,15 @@ public class ManageCardsController implements Initializable{
     @FXML
     private TableColumn<Card, String> backCol;
     
+    static ResultSet resultSet = null;
+    
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
-    	frontCol.setCellValueFactory(new PropertyValueFactory<>("front"));
-    	backCol.setCellValueFactory(new PropertyValueFactory<>("back"));
-    	cardTable.setItems(DeckList.defaultDeck.CardList);
+    	frontCol.setCellValueFactory(new PropertyValueFactory<>("matTruoc"));
+    	backCol.setCellValueFactory(new PropertyValueFactory<>("matSau"));
+    	cardTable.setItems(QueryDataAccessObject.getData(Main.currentConnection));
     	cardTable.setFixedCellSize(24.0);
     	editCardButton.setDisable(true);
-    	
-//    	cardTable.setRowFactory(tv -> {
-//    		TableRow<Card> row = new TableRow<>();
-//    		row.setOnMouseClicked(event -> {
-//    			if (! row.isEmpty() && event.getButton()==MouseButton.PRIMARY 
-//    					&& event.getClickCount() == 2)
-//    			{
-//    				Card clickedRow = row.getItem();
-//    			}
-//    		});
-//    		return row;
-//    	});
-    	
     }
     
     @FXML
@@ -123,4 +114,7 @@ public class ManageCardsController implements Initializable{
     	
     }
 
+    @FXML void goToDelete() {
+    	
+    }
 }

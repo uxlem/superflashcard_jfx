@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import SqlServer.QueryDataAccessObject;
 import cards.Card;
-import cards.DeckList;
+//import cards.DeckList;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,15 +42,17 @@ public class StudyController implements Initializable {
 	
 	static int deckSize;
 	static int currentCardIndex = 0;
-
+	static ObservableList<Card> CardList;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		deckSize = DeckList.defaultDeck.CardList.size();
+		CardList = QueryDataAccessObject.getData(Main.currentConnection);
+		deckSize = CardList.size();
 		cardNumString.setText((String)("Bộ thẻ có "+deckSize+" thẻ"));
 		if (deckSize > 0) {
-			Card currentCard = DeckList.defaultDeck.CardList.get(currentCardIndex);
-			front.setText(currentCard.front);
-			back.setText(currentCard.back);
+			Card currentCard = CardList.get(currentCardIndex);
+			front.setText(currentCard.getMatTruoc());
+			back.setText(currentCard.getMatSau());
 		}
 		back.setVisible(false);
 	}
@@ -75,7 +79,7 @@ public class StudyController implements Initializable {
 		Parent root = loader.load();
 		EditController EditSceneController = loader.getController();
 		EditSceneController.setPreviousScene(3);
-		EditSceneController.setPrevSelectedCard(DeckList.defaultDeck.CardList.get(currentCardIndex));
+		EditSceneController.setPrevSelectedCard(CardList.get(currentCardIndex));
 		EditSceneController.initialize(null, null);
 		currentStage.setScene(new Scene(root));
 		currentStage.show();
@@ -87,9 +91,9 @@ public class StudyController implements Initializable {
 			currentCardIndex++;
 		else currentCardIndex = 0;
 		
-		Card currentCard = DeckList.defaultDeck.CardList.get(currentCardIndex);
-		front.setText(currentCard.front);
+		Card currentCard = CardList.get(currentCardIndex);
+		front.setText(currentCard.getMatTruoc());
 		back.setVisible(false);
-		back.setText(currentCard.back);
+		back.setText(currentCard.getMatSau());
 	}
 }
