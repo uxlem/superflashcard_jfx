@@ -3,9 +3,11 @@
 ## Hướng dẫn dịch và chạy siêu ứng dụng
 
 ### Tóm tắt: 
-* Tải [thư mục/zip src ở trên hoặc tại đây](https://github.com/uxlem/sieuungdung_jfx/releases/tag/pre)
+* [Chuẩn bị] Tải thư viện JavaFX và H2, thêm vào Modulepath/Classpath của Project trên máy mọi người.
 
-* Copy thư mục src trên này vào project trống trên máy của mọi người, thêm VM Arguments và chạy hoy
+* Tải mã nguồn: [thư mục/zip src ở trên hoặc tại đây](https://github.com/uxlem/sieuungdung_jfx/releases/tag/pre)
+
+* Copy thư mục src trên này vào project trống trên máy của mọi người, thêm VM Arguments và chạy hoy.
 
 Tham khảo https://openjfx.io/openjfx-docs/#introduction và youtube
 
@@ -15,9 +17,11 @@ Trong trường hợp ae nào cần hướng dẫn cụ thể hơn thì
 
 0. [Bước chuẩn bị]
    
-    Tải javafx-**sdk** tại https://gluonhq.com/products/javafx/ (chú ý chọn tải sdk), giải nén, trong đó có thư mục `lib`
+    * Tải javafx-**sdk** tại https://gluonhq.com/products/javafx/ (chú ý chọn tải sdk), giải nén, trong đó có thư mục `lib` có các file .jar cần thêm vào Classpath/Modulepath
 
-    Mình dùng bản 21.0.2 LTS
+        Mình dùng bản 21.0.2 LTS
+
+    * Tải H2 tại https://h2database.com/html/main.html, chọn Download > All Platforms (file .zip) giải nén ra, trong đó có thư mục bin chứa file .jar cần thêm vào Classpath
 
 1. Tạo một project trống bằng IDE của mọi người
 
@@ -33,14 +37,18 @@ Trong trường hợp ae nào cần hướng dẫn cụ thể hơn thì
     * [Với IDE Eclipse](#với-ide-eclipse)
     * [Với IDE NetBeans](#với-ide-netbeans)
 
-4. Bấm chạy thôi <3
+4. Thêm thư viện của H2, thực hiện tương tự phần [thêm Library vào Classpath của Project](#sau-đó-ta-thêm-library-vào-classpath-của-project), chỉ khác là chọn `Add External JARs...` thay vì `Add Library...` (trong IDE Eclipse), tức là:
+    * Mở `Project > Properties > Java Build Path > Libraries`
+    * Bấm chọn `Classpath`, chọn `Add Library...`
+
+5. Bấm chạy thôi <3
     
 #### Với IDE IntellJ
 Vui lòng xem trang tham khảo đã ghi ở trên, trong đó có cả hướng dẫn cho Eclipse và NetBeans, hoặc là YouTube. :=) mình chưa cài IntelliJ chưa viết hướng dẫn được.
 
 #### Với IDE Eclipse
 ##### 1. Thêm thư viện javafx vào "Classpath"
-
+##### Để cho tiện, ta tạo thư viện chứa các file .jar của javafx
 * Nếu chưa cài e(fx)clipse
 
     Tạo một User Library gồm các "thư viện" của JavaFX như sau:
@@ -58,7 +66,7 @@ Vui lòng xem trang tham khảo đã ghi ở trên, trong đó có cả hướng
     * Mở `Window > Preferences > JavaFX`
     * Chỉnh phần `JavaFX 11 SDK` thành đường dẫn thư mục `lib` của javafx-sdk
 
-Sau đó ta thêm Library vào Classpath của Project:
+##### Sau đó ta thêm Library vào Classpath của Project:
 
 * Mở `Project > Properties > Java Build Path > Libraries`
 * Bấm chọn `Classpath`, chọn `Add Library...`
