@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="testFX3.StudyController">
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudyController">
    <children>
       <Text fx:id="frontTitle" layoutX="166.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nội dung mặt trước" textAlignment="CENTER" wrappingWidth="267.7367401123047" />
       <ScrollPane layoutX="86.0" layoutY="216.0" prefHeight="90.0" prefWidth="426.0">

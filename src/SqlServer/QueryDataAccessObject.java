@@ -1,33 +1,31 @@
 package SqlServer;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import cards.Card;
-import cards.Flashcard;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class QueryDataAccessObject {
 	
-	public static void createTable(Connection connection) {
+	public static void createTable() {
 		try {
-			ResultSet res_set = connection.getMetaData().getTables(null, null, "FLASHCARDS", null);
+			ResultSet res_set = DatabaseConnector.getConnection().getMetaData().getTables(null, null, "FLASHCARDS", null);
 			if (res_set.next()) {
-				System.out.println("Da co bang FlashCards! hehe");
+				System.out.println("Đã có bảng flashCards!");
 
 			} else {
-				System.out.println("Chua co bang FlashCards! huhu");
+				System.out.println("Chưa có bảng flashcards, tiến hành tạo bảng.");
 				String sql = "CREATE TABLE flashcards("
 						+ "ID BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, "
 						+ "mattruoc varchar(255), "
 						+ "matsau varchar(255), "
 						+ "date_created datetime)";
-		        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+		        try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql)) {
 		            preparedStatement.executeUpdate();
-		            System.out.println("Table created successfully!");
+		            System.out.println("Tạo bảng thành công!");
 		        } catch (SQLException e) {
 		            e.printStackTrace();
 		        }
@@ -39,27 +37,30 @@ public class QueryDataAccessObject {
 		
 	}
 	
-    public static void insertCard(Card flashcard, Connection connection) {
+    public static void insertCard(Card flashcard) {
         String sql = "INSERT INTO Flashcards (mattruoc, matsau, date_created) VALUES (?, ?, ?)";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql)) {
 
             preparedStatement.setString(1, flashcard.getMatTruoc());
             preparedStatement.setString(2, flashcard.getMatSau());
             preparedStatement.setString(3, flashcard.getDate_Created());
 
             preparedStatement.executeUpdate();
-            System.out.println("(Flash)Card inserted successfully!");
+            System.out.println("Thêm Card thành công!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
     
-    public static void editCard(Card cardToEdit, String frontText, String backText, Connection connection) {
+    public static void editCard(Card cardToEdit, String frontText, String backText) {
     	String sql = "UPDATE Flashcards "
-    			+ "SET mattruoc='" + frontText + "', matsau='" + backText + "' "
-    			+ "WHERE mattruoc = '" + cardToEdit.getMatTruoc() + "'" ;
-    	try (PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+    			+ "SET mattruoc=?, matsau=? "
+    			+ "WHERE mattruoc = ?" ;
+    	try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql);) {
+    		preparedStatement.setString(1, frontText);
+            preparedStatement.setString(2, backText);
+            preparedStatement.setString(3, cardToEdit.getMatTruoc());
     		preparedStatement.executeUpdate();
     		System.out.println("(Flash)Card edited successfully!");
             } catch (SQLException e) {
@@ -67,9 +68,9 @@ public class QueryDataAccessObject {
             }
     }
     
-    public static ObservableList<Card> getData(Connection connection) {
+    public static ObservableList<Card> getData() {
         String sql = "SELECT * FROM Flashcards";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql);
              ResultSet resultSet = preparedStatement.executeQuery()) {
         	ObservableList<Card> data = FXCollections.observableArrayList();
         	while(resultSet.next())
@@ -87,10 +88,11 @@ public class QueryDataAccessObject {
         }
     }
     
-    public static Card findCard(Connection connection, String frontText) {
-        String sql = "SELECT * FROM Flashcards WHERE mattruoc = '" + frontText + "'";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery()) {
+    public static Card findCard(String frontText) {
+        String sql = "SELECT * FROM Flashcards WHERE mattruoc = ?";
+        try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql);) {
+        	preparedStatement.setString(1, frontText);
+            ResultSet resultSet = preparedStatement.executeQuery();
         	if (resultSet.next()) {
         		int id = resultSet.getInt("id");
         		String matTruoc = resultSet.getString("mattruoc");
@@ -107,10 +109,10 @@ public class QueryDataAccessObject {
         }
     }
     
-    public static Card getRandomCard(Connection connection) {
+    public static Card getRandomCard() {
         String sql = "SELECT * FROM Flashcards ORDER BY RAND() LIMIT 1";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql);
              ResultSet resultSet = preparedStatement.executeQuery()) {
             if (resultSet.next()) {
                 // Retrieve data from the result set
@@ -129,10 +131,10 @@ public class QueryDataAccessObject {
         }
     }
 
-    public static void deleteAllCards(Connection connection) {
+    public static void deleteAllCards() {
         String sql = "DELETE FROM Flashcards";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql)) {
             int rowsAffected = preparedStatement.executeUpdate();
             System.out.println(rowsAffected + " flashcards deleted successfully!");
         } catch (SQLException e) {
