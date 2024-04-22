@@ -1,13 +1,13 @@
-# Siêu ứng dụng FlashCard
+# Siêu ứng dụng Super FlashCard
 
-## Hướng dẫn dịch và chạy siêu ứng dụng
+## Hướng dẫn dịch và chạy ứng dụng
 
 ### Tóm tắt: 
 * [Chuẩn bị] Tải thư viện JavaFX và H2, thêm vào Modulepath/Classpath của Project trên máy mọi người.
 
-* Tải mã nguồn: [thư mục/zip src ở trên hoặc tại đây](https://github.com/uxlem/sieuungdung_jfx/releases/tag/pre)
+* Tải mã nguồn: thư mục/zip src ở bên trên hoặc [tại phần Release](https://github.com/uxlem/sieuungdung_jfx/releases)
 
-* Copy thư mục src trên này vào project trống trên máy của mọi người, thêm VM Arguments và chạy hoy.
+* Copy thư mục src trên này vào project trống trên máy của mọi người, thêm VM Arguments và chạy.
 
 Tham khảo https://openjfx.io/openjfx-docs/#introduction và youtube
 
