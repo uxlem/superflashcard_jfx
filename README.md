@@ -1,4 +1,4 @@
-# Siêu ứng dụng Super FlashCard
+# Ứng dụng Super FlashCard
 
 ## Hướng dẫn dịch và chạy ứng dụng
 
