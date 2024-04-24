@@ -11,8 +11,6 @@
 
 Tham khảo https://openjfx.io/openjfx-docs/#introduction và youtube
 
-Trong trường hợp ae nào cần hướng dẫn cụ thể hơn thì 
-
 ### Hướng dẫn cụ thể
 
 0. [Bước chuẩn bị]
@@ -30,8 +28,6 @@ Trong trường hợp ae nào cần hướng dẫn cụ thể hơn thì
     Với IDE Eclipse, sau khi copy file vào trong thư mục src, bấm `F5` để Refresh để thấy các file đã copy trong `Package Explorer`.
 
 3. Thêm thư viện javafx-sdk vào Classpath của project, thêm VM arguments khi chạy
-
-    Hướng dẫn cụ thể hơn nữa cho từng IDE ở bên dưới, nếu đọc hướng dẫn khó hiểu quá hãy xem youtube nhé 🥺
 
     * [Với IDE IntelliJ](#với-ide-intellj)
     * [Với IDE Eclipse](#với-ide-eclipse)
@@ -103,7 +99,7 @@ Vui lòng xem trang tham khảo đã ghi ở trên, trong đó có cả hướng
 
     ![alt text](mymd/netbeans64_hcQqHLA8Vh.gif)
 
-    Vì một lí do gì đấy chưa rõ, khi mình bấm thêm mỗi thư mục `lib` thì nó hơi lỗi lỗi xíu, còn khi vào hẳn trong thư mục `lib` để thêm .jar thì sẽ bình thường.
+    Vì một lí do gì đấy chưa rõ, khi bấm thêm mỗi thư mục `lib` thì nó hơi lỗi lỗi xíu, còn khi vào hẳn trong thư mục `lib` để thêm .jar thì sẽ bình thường.
 
 2. Thêm library vào Classpath khi compile và Modulepath khi chạy
     
