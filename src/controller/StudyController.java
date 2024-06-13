@@ -33,7 +33,7 @@ public class StudyController implements Initializable {
 	@FXML
 	private Text frontTitle;
 	@FXML
-	private Button MenuButton;
+	private Button goBackButton;
 	@FXML
 	private Button editCardButton;
 	@FXML
@@ -47,13 +47,16 @@ public class StudyController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		CardList = QueryDataAccessObject.getData();
+		CardList = QueryDataAccessObject.getAllCards();
 		deckSize = CardList.size();
 		cardNumString.setText((String)("Bộ thẻ có "+deckSize+" thẻ"));
 		if (deckSize > 0) {
 			Card currentCard = CardList.get(currentCardIndex);
 			front.setText(currentCard.getMatTruoc());
 			back.setText(currentCard.getMatSau());
+		}
+		else if (deckSize == 0) {
+			front.setText("Chưa có thẻ nào, bạn hãy đi thêm thẻ!");
 		}
 		back.setVisible(false);
 	}
@@ -65,9 +68,9 @@ public class StudyController implements Initializable {
 	}
 
 	@FXML
-	public void backToMenu(ActionEvent event) throws IOException {
-		Stage currentStage = (Stage) MenuButton.getScene().getWindow();
-		Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+	public void goBack(ActionEvent event) throws IOException {
+		Stage currentStage = (Stage) goBackButton.getScene().getWindow();
+		Parent root = FXMLLoader.load(getClass().getResource("/resources/menu.fxml"));
 		currentStage.setScene(new Scene(root));
 		currentStage.show();
 	}
@@ -76,10 +79,10 @@ public class StudyController implements Initializable {
 	public void goToEdit(ActionEvent event) throws IOException {
 		Stage currentStage = (Stage) editCardButton.getScene().getWindow();
 		// Parent root = FXMLLoader.load(getClass().getResource("card_edit.fxml"));
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("card_edit.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/card_edit.fxml"));
 		Parent root = loader.load();
 		EditController EditSceneController = loader.getController();
-		EditSceneController.setPreviousScene(3);
+		
 		EditSceneController.setPrevSelectedCard(CardList.get(currentCardIndex));
 		EditSceneController.initialize(null, null);
 		currentStage.setScene(new Scene(root));

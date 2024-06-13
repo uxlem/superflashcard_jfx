@@ -32,11 +32,11 @@ public class ManageCardsController implements Initializable{
     private Button MenuButton;
 
     @FXML
-    private Button deleteCardButton;
-
-    @FXML
     private Button detailButton;
 
+    @FXML
+    private Button deleteCardButton;
+    
     @FXML
     private Button editCardButton;
 
@@ -58,49 +58,62 @@ public class ManageCardsController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
     	frontCol.setCellValueFactory(new PropertyValueFactory<>("matTruoc"));
     	backCol.setCellValueFactory(new PropertyValueFactory<>("matSau"));
-    	cardTable.setItems(QueryDataAccessObject.getData());
+    	cardTable.setItems(QueryDataAccessObject.getCardsFromDeck(ManageDecksController.selectedDeck));
     	cardTable.setFixedCellSize(24.0);
+    	frontCol.prefWidthProperty().bind(cardTable.widthProperty().multiply(0.45));
+    	backCol.prefWidthProperty().bind(cardTable.widthProperty().multiply(0.45));
     	editCardButton.setDisable(true);
+    	deleteCardButton.setDisable(true);
+    	detailButton.setDisable(true);
+    }
+    
+    static Scene previousScene;
+    public static void setPreviousScene(Scene scene) {
+    	previousScene = scene;
     }
     
     @FXML
     void backToMenu(ActionEvent event) throws IOException {
-    	Stage currentStage = (Stage) MenuButton.getScene().getWindow();
-		Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
-		currentStage.setScene(new Scene(root));
-		currentStage.show();
+//    	Stage currentStage = (Stage) MenuButton.getScene().getWindow();
+////		Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+//		currentStage.setScene(previousScene);
+//		currentStage.show();
+		Navi.goTo("/resources/manage_decks.fxml", MenuButton);
     }
 
     @FXML
     void goToCreateNewCard(ActionEvent event) throws IOException {
     	Stage currentStage = (Stage) newCardButton.getScene().getWindow();
 		//Parent root = FXMLLoader.load(getClass().getResource("card_edit.fxml"));
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("card_edit.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/card_edit.fxml"));
 		Parent root = loader.load();
+		EditController.setPreviousOption(1);
 		EditController EditSceneController = loader.getController();
-		EditSceneController.setPreviousScene(1);
+		EditController.setPreviousScene(newCardButton.getScene());
 		EditSceneController.initialize(null, null);
 		currentStage.setScene(new Scene(root));
 		currentStage.show();
     }
 
     @FXML
-    void goToDetails(ActionEvent event) {
-
+    void goToDetails(ActionEvent event) throws IOException {
+    	NewStudyController.setPreviousScene(detailButton.getScene());
+    	NewStudyController.currentCardIndex = cardTable.getItems().indexOf(selectedCard);
+    	Navi.goTo("/resources/nstudy.fxml", detailButton);
     }
 
     private static Card selectedCard;
     
     @FXML
     void goToEdit(ActionEvent event) throws IOException {
-    	Stage currentStage = (Stage) newCardButton.getScene().getWindow();
-		//Parent root = FXMLLoader.load(getClass().getResource("card_edit.fxml"));
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("card_edit.fxml"));
+    	Scene currentScene = newCardButton.getScene();
+    	Stage currentStage = (Stage) currentScene.getWindow();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/card_edit.fxml"));
 		Parent root = loader.load();
-		EditController EditSceneController = loader.getController();
-		EditSceneController.setPreviousScene(2);
-		EditSceneController.setPrevSelectedCard(selectedCard);
-		EditSceneController.initialize(null, null);
+		EditController.setPreviousScene(currentScene);
+		EditController.setPreviousOption(2);
+		EditController.setPrevSelectedCard(selectedCard);
+		((Initializable) loader.getController()).initialize(null, null);
 		currentStage.setScene(new Scene(root));
 		currentStage.show();
     }
@@ -109,13 +122,25 @@ public class ManageCardsController implements Initializable{
     	if (event.getClickCount() == 1) //Checking click
         {
     		selectedCard = cardTable.getSelectionModel().getSelectedItem();
-    		if (selectedCard != null) editCardButton.setDisable(false);
-    		else editCardButton.setDisable(true);
+    		if (selectedCard != null) 
+    			{
+    				editCardButton.setDisable(false);
+    				deleteCardButton.setDisable(false);
+    				detailButton.setDisable(false);
+    			}
+    		else 
+    			{
+    				editCardButton.setDisable(true);
+    				deleteCardButton.setDisable(true);
+    				detailButton.setDisable(true);
+    			}
         }
     	
     }
 
-    @FXML void goToDelete() {
-    	
+    @FXML void goToDelete(ActionEvent event) {
+    	QueryDataAccessObject.deleteCard(selectedCard);
+    	cardTable.getItems().remove(selectedCard);
+    	cardTable.refresh();
     }
 }

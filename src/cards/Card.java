@@ -5,7 +5,8 @@ public class Card {
     private String matTruoc;
     private String matSau;
     private String date_Created;
-
+    private int deckId;
+    
     public Card(String matTruoc, String matSau) {
     	this.matTruoc = matTruoc;
     	this.matSau = matSau;
@@ -56,7 +57,15 @@ public class Card {
         this.date_Created = date_Created;
     }
 
-    @Override
+    public int getDeckId() {
+		return deckId;
+	}
+
+	public void setDeckId(int deckId) {
+		this.deckId = deckId;
+	}
+
+	@Override
     public String toString() {
         return "Mặt Trước: " + matTruoc + '\'' +
                 ", Mặt Sau: '" + matSau + '\'' +

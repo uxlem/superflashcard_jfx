@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="118.0" prefWidth="427.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TimeReminderController">
+   <children>
+      <Text fx:id="timeNotificationText" fill="#fa0000" layoutX="44.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bạn đã sử dụng app 45 phút liên tục!" textAlignment="CENTER" wrappingWidth="366.52735900878906" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#fa0000" layoutX="66.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhớ nghỉ ngơi rồi hãy học tiếp để học cho hiệu quả nhé!" textAlignment="CENTER" wrappingWidth="295.3273468017578">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
