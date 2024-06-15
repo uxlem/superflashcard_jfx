@@ -20,8 +20,7 @@ public class QueryDataAccessObject {
 
 			} else {
 				System.out.println("Chưa có bảng flashcards, tiến hành tạo bảng.");
-				String sql = "CREATE TABLE flashcards(" + "ID BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, "
-						+ "mattruoc varchar(1000), " + "matsau varchar(1000), " + "date_created datetime, deckid BIGINT)";
+				String sql = "CREATE TABLE flashcards(ID BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, mattruoc varchar(1000), matsau varchar(1000), date_created datetime, deckid BIGINT)";
 				try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql)) {
 					preparedStatement.executeUpdate();
 					System.out.println("Tạo bảng thành công!");
