@@ -69,6 +69,10 @@ public class EditController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		cardIsBlankText.setVisible(false);
 		switch(previousOption) {
+		case 1:
+			frontTextArea.setText("");
+			backTextArea.setText("");
+			break;
 		case 2:
 		case 3:
 			frontTextArea.setText(previously_selectedCard.getMatTruoc());
@@ -87,10 +91,24 @@ public class EditController implements Initializable {
 		switch(previousOption) {
 		case 1:
 		case 2:
-			Navi.goTo("/resources/manage.fxml", backButton);
+		{
+			Stage currentStage = (Stage) backButton.getScene().getWindow();
+			Parent root = FXMLLoader.load(this.getClass().getResource("/managecards2.fxml"));
+			double w = currentStage.getWidth(), h = currentStage.getHeight();
+			currentStage.setScene(new Scene(root));
+			currentStage.setHeight(h); currentStage.setWidth(w);
+			currentStage.show();
 			break;
+		}
 		case 3:
-			Navi.goTo("/resources/nstudy.fxml", backButton);
+		{
+			Stage currentStage = (Stage) backButton.getScene().getWindow();
+			Parent root = FXMLLoader.load(this.getClass().getResource("/nstudy.fxml"));
+			double w = currentStage.getWidth(), h = currentStage.getHeight();
+			currentStage.setScene(new Scene(root));
+			currentStage.setHeight(h); currentStage.setWidth(w);
+			currentStage.show();
+		}
 		}
 	}
 
@@ -110,7 +128,8 @@ public class EditController implements Initializable {
 					cardIsBlankText.setText("Đã có thẻ trùng mặt trước, tạo thẻ không thành công!");
 					cardIsBlankText.setVisible(true);
 				} else {
-					cardIsBlankText.setVisible(false);
+					cardIsBlankText.setText("Đã tạo thẻ. " + DateRepository.getDateNow());
+					cardIsBlankText.setVisible(true);
 					QueryDataAccessObject.insertCard(new Card(frontText, backText, DateRepository.getDateNow()), ManageDecksController.selectedDeck);
 				}
 				break;
@@ -120,7 +139,8 @@ public class EditController implements Initializable {
 					cardIsBlankText.setText("Đã có thẻ (khác thẻ này) trùng mặt trước, sửa thẻ không thành công!");
 					cardIsBlankText.setVisible(true);
 				} else {
-					cardIsBlankText.setVisible(false);
+					cardIsBlankText.setText("Đã sửa thẻ. " + DateRepository.getDateNow());
+					cardIsBlankText.setVisible(true);
 					QueryDataAccessObject.editCard(previously_selectedCard, frontText, backText);
 					previously_selectedCard.setMatSau(backText);
 					previously_selectedCard.setMatTruoc(frontText);

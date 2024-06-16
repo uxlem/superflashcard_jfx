@@ -35,13 +35,14 @@ public class Main extends Application {
 	        timerReminder.LearningReminder();
 	        
 			// Đọc file fxml và vẽ giao diện.
-			Parent root = FXMLLoader.load(Main.class.getResource("/resources/manage_decks.fxml"));
+			Parent root = FXMLLoader.load(Main.class.getResource("/manage_decks.fxml"));
 			primaryStage.setTitle("Super FlashCard");
 			primaryStage.setMinHeight(480);
 			primaryStage.setMinWidth(640);
 			primaryStage.setScene(new Scene(root, 800, 600));
 			primaryStage.setResizable(true);
 			primaryStage.show();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			DatabaseConnector.closeConnection();
@@ -49,7 +50,7 @@ public class Main extends Application {
 			System.exit(1);
 		}
 	}
-
+ 
 	public static void main(String[] args) {
 		launch(args);
 		DatabaseConnector.closeConnection();

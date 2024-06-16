@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 
 public class QueryDataAccessObject {
 
-	public static void createTable() {
+	public static void createTables() {
 		try {
 			ResultSet res_set = DatabaseConnector.getConnection().getMetaData().getTables(null, null, "FLASHCARDS",
 					null);
@@ -20,10 +20,12 @@ public class QueryDataAccessObject {
 
 			} else {
 				System.out.println("Chưa có bảng flashcards, tiến hành tạo bảng.");
-				String sql = "CREATE TABLE flashcards(ID BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, mattruoc varchar(1000), matsau varchar(1000), date_created datetime, deckid BIGINT)";
+				String sql = "CREATE TABLE flashcards(" + "ID BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, "
+						+ "mattruoc varchar(255), " + "matsau varchar(255), " + "date_created datetime,"
+								+ " deckid BIGINT DEFAULT 1)";
 				try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql)) {
 					preparedStatement.executeUpdate();
-					System.out.println("Tạo bảng thành công!");
+					System.out.println("Tạo bảng Flashcards thành công!");
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -32,6 +34,42 @@ public class QueryDataAccessObject {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			ResultSet res_set = DatabaseConnector.getConnection().getMetaData().getTables(null, null, "DECKS",
+					null);
+			if (res_set.next()) {
+				System.out.println("Đã có bảng Decks!");
+
+			} else {
+				System.out.println("Chưa có bảng Decks, tiến hành tạo bảng.");
+				// Tạo bảng
+				String sql = "CREATE TABLE Decks(ID BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, "
+						+ "name VARCHAR(255))";
+				try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql)) {
+					preparedStatement.executeUpdate();
+					System.out.println("Tạo bảng Decks thành công!");
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+				// Tạo bộ thẻ mặc định
+				String sql2 = "INSERT INTO DECKS (NAME) VALUES 'Bộ thẻ mặc định'";
+				try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql2)) {
+					preparedStatement.executeUpdate();
+					System.out.println("Tạo bộ thẻ mặc định thành công!");
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+				
 
 	}
 

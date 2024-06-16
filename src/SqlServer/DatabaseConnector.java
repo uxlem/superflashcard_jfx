@@ -40,6 +40,6 @@ public class DatabaseConnector {
 		String username = "nice";
 		String password = "password";
 		DatabaseConnect(url, username, password);
-		QueryDataAccessObject.createTable();
+		QueryDataAccessObject.createTables();
 	}
 }

@@ -22,7 +22,7 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.scene.shape.*;
 
-public class NewStudyController implements Initializable {
+public class TestController implements Initializable {
 	@FXML private TextFlow frontTextFlow, backTextFlow;
 	@FXML private Text frontText, backText;
 	@FXML private Button goBackButton, goToEditButton, showAnswerButton, nextCardButton;
@@ -59,7 +59,7 @@ public class NewStudyController implements Initializable {
 	@FXML
 	public void goBack(ActionEvent event) throws IOException {
 		Stage currentStage = (Stage) goBackButton.getScene().getWindow();
-		Parent root = FXMLLoader.load(this.getClass().getResource("/managecards2.fxml"));
+		Parent root = FXMLLoader.load(this.getClass().getResource("/manage_decks.fxml"));
 		double w = currentStage.getWidth(), h = currentStage.getHeight();
 		currentStage.setScene(new Scene(root));
 		currentStage.setHeight(h); currentStage.setWidth(w);
@@ -68,15 +68,15 @@ public class NewStudyController implements Initializable {
 
 	@FXML
 	public void goToEdit(ActionEvent event) throws IOException {
-		Stage currentStage = (Stage) goToEditButton.getScene().getWindow();
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/card_edit.fxml"));
-		Parent root = loader.load();
-		EditController.setPreviousOption(3);
-		EditController.setPreviousScene(goToEditButton.getScene());
-		EditController.setPrevSelectedCard(CardList.get(currentCardIndex));
-		((Initializable) loader.getController()).initialize(null, null);
-		currentStage.setScene(new Scene(root));
-		currentStage.show();
+//		Stage currentStage = (Stage) goToEditButton.getScene().getWindow();
+//		FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/card_edit.fxml"));
+//		Parent root = loader.load();
+//		EditController.setPreviousOption(3);
+//		EditController.setPreviousScene(goToEditButton.getScene());
+//		EditController.setPrevSelectedCard(CardList.get(currentCardIndex));
+//		((Initializable) loader.getController()).initialize(null, null);
+//		currentStage.setScene(new Scene(root));
+//		currentStage.show();
 	}
 
 	@FXML

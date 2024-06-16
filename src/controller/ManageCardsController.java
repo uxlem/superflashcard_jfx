@@ -60,8 +60,8 @@ public class ManageCardsController implements Initializable{
     	backCol.setCellValueFactory(new PropertyValueFactory<>("matSau"));
     	cardTable.setItems(QueryDataAccessObject.getCardsFromDeck(ManageDecksController.selectedDeck));
     	cardTable.setFixedCellSize(24.0);
-    	frontCol.prefWidthProperty().bind(cardTable.widthProperty().multiply(0.45));
-    	backCol.prefWidthProperty().bind(cardTable.widthProperty().multiply(0.45));
+    	frontCol.prefWidthProperty().bind(cardTable.widthProperty().multiply(0.5));
+    	backCol.prefWidthProperty().bind(cardTable.widthProperty().multiply(0.5));
     	editCardButton.setDisable(true);
     	deleteCardButton.setDisable(true);
     	detailButton.setDisable(true);
@@ -74,18 +74,19 @@ public class ManageCardsController implements Initializable{
     
     @FXML
     void backToMenu(ActionEvent event) throws IOException {
-//    	Stage currentStage = (Stage) MenuButton.getScene().getWindow();
-////		Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
-//		currentStage.setScene(previousScene);
-//		currentStage.show();
-		Navi.goTo("/resources/manage_decks.fxml", MenuButton);
+    	Stage currentStage = (Stage) MenuButton.getScene().getWindow();
+		Parent root = FXMLLoader.load(getClass().getResource("/manage_decks.fxml"));
+		double w = currentStage.getWidth(), h = currentStage.getHeight();
+		currentStage.setScene(new Scene(root));
+		currentStage.setHeight(h); currentStage.setWidth(w);
+		currentStage.show();
     }
 
     @FXML
     void goToCreateNewCard(ActionEvent event) throws IOException {
     	Stage currentStage = (Stage) newCardButton.getScene().getWindow();
 		//Parent root = FXMLLoader.load(getClass().getResource("card_edit.fxml"));
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/card_edit.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/card_edit.fxml"));
 		Parent root = loader.load();
 		EditController.setPreviousOption(1);
 		EditController EditSceneController = loader.getController();
@@ -99,7 +100,13 @@ public class ManageCardsController implements Initializable{
     void goToDetails(ActionEvent event) throws IOException {
     	NewStudyController.setPreviousScene(detailButton.getScene());
     	NewStudyController.currentCardIndex = cardTable.getItems().indexOf(selectedCard);
-    	Navi.goTo("/resources/nstudy.fxml", detailButton);
+//    	Navi.goTo("/resources/nstudy.fxml", detailButton);
+    	Stage currentStage = (Stage) detailButton.getScene().getWindow();
+		Parent root = FXMLLoader.load(this.getClass().getResource("/nstudy.fxml"));
+		double w = currentStage.getWidth(), h = currentStage.getHeight();
+		currentStage.setScene(new Scene(root));
+		currentStage.setHeight(h); currentStage.setWidth(w);
+		currentStage.show();
     }
 
     private static Card selectedCard;
@@ -108,7 +115,7 @@ public class ManageCardsController implements Initializable{
     void goToEdit(ActionEvent event) throws IOException {
     	Scene currentScene = newCardButton.getScene();
     	Stage currentStage = (Stage) currentScene.getWindow();
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/card_edit.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/card_edit.fxml"));
 		Parent root = loader.load();
 		EditController.setPreviousScene(currentScene);
 		EditController.setPreviousOption(2);

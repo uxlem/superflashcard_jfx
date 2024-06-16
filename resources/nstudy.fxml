@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane styleClass="anchor-pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewStudyController">
+   <children>
+      <ToolBar prefHeight="40.0" prefWidth="600.0" styleClass="toolbar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBack" text="Trở về" />
+        </items>
+      </ToolBar>
+      <GridPane alignment="CENTER" layoutY="65.0" vgap="4.0" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="60.0" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="-Infinity" minHeight="10.0" percentHeight="40.0" vgrow="ALWAYS" />
+            <RowConstraints />
+        </rowConstraints>
+         <children>
+            <TextFlow fx:id="frontTextFlow" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" textAlignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS">
+               <children>
+                  <Text fx:id="frontText" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;dummy text 1&gt;">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Text>
+               </children>
+            </TextFlow>
+            <TextFlow fx:id="backTextFlow" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" textAlignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+               <children>
+                  <Text fx:id="backText" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;dummy text 2&gt;">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Text>
+               </children>
+            </TextFlow>
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER" layoutX="51.0" layoutY="389.0" prefHeight="26.0" prefWidth="470.0" spacing="20.0" AnchorPane.bottomAnchor="14.600000000000001" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="51.0">
+         <children>
+            <Button fx:id="goToEditButton" minWidth="30.0" mnemonicParsing="false" onAction="#goToEdit" prefWidth="120.0" text="Sửa thẻ" />
+            <Button fx:id="showAnswerButton" minWidth="30.0" mnemonicParsing="false" onAction="#showAnswer" prefWidth="120.0" text="Hiện đáp án" />
+            <Button fx:id="nextCardButton" minWidth="30.0" mnemonicParsing="false" onAction="#goToNext" prefWidth="120.0" text="Thẻ tiếp theo" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

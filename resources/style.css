@@ -1,0 +1,120 @@
+.root{
+    -fx-font-family: 'Montserrat';
+    -fx-font-size: 14;
+}
+
+.button{
+    -fx-background-color: #bdff67;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-text-fill: #1d3f0b;
+    -fx-border-width: 1px;
+    -fx-border-color: #39810a;
+    -fx-border-style: solid;
+}
+
+.button:hover{
+    -fx-background-color: #ffe51e;
+    -fx-border-width: 2px;
+    -fx-border-color: #FF0000;
+    -fx-border-style: solid;
+}
+
+.pane {
+    -fx-background-color: #FFFFFF;
+}
+
+.anchor-pane{
+    -fx-background-color: #FFFFFF;
+
+}
+
+.grid {
+    -fx-grid-lines-visible: false;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10px;
+    -fx-vgap: 10px;
+}
+
+.text-flow{
+    -fx-background-color: #fbffac;
+    -fx-background-radius: 10px;
+}
+
+.label{
+    -fx-font-family: 'Montserrat ExtraBold';
+    -fx-font-size: 24;
+}
+
+.tool-bar{
+    -fx-background-color: #caffee;
+}
+
+.warning-text{
+    -fx-font-family: 'Montserrat';
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+}
+
+.table-view{
+
+    -fx-background-color: #ffeb79;
+    -fx-background-radius: 10px;
+}
+
+.table-view .column-header-background
+{
+    -fx-background-color: #ffcf7d;
+    -fx-background-radius: 10px 10px 0px 0px;
+}
+
+.table-view .column-header-background .nested-column-header .column-header
+{
+    -fx-background-color: #FFFFFF00;
+    -fx-background-radius: 10px 10px 0px 0px;
+}
+
+.fcol
+{
+    -fx-background-color: #FFFF00;
+    
+}
+
+
+.table-view .column-header-background .filler
+{
+    -fx-background-color: #ffdada00;
+    -fx-background-radius: 10px;
+}
+
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+}
+
+.table-row-cell: hover {
+    -fx-background-color: #ffffff;
+    -fx-text-background-color: red;
+}
+
+.table-row-cell: odd{
+    -fx-background-color: #FFFFFFa0;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell: even{
+    -fx-background-color: #FFFFFF70;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell: selected{
+    -fx-text-background-color: red;
+    -fx-background-color: #ffffff;
+}
+
+.table-row-cell: highlighted {
+    -fx-background-color: #81c483;
+    -fx-background-radius: 15px;
+}

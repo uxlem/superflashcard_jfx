@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class Reminder {
 	public void openReminderWindow() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/time_reminder.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/time_reminder.fxml"));
     		Parent root;
 			root = loader.load();
 			Stage newDeckDialog = new Stage();

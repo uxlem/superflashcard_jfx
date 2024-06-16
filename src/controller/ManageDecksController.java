@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Label;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,9 +22,11 @@ import javafx.scene.control.ListCell;
 public class ManageDecksController implements Initializable {
 
 	@FXML
-	private Button newDeckButton, deleteButton, viewButton;
+	private Button newDeckButton, deleteButton, viewButton, testButton;
 	@FXML
 	ListView<Deck> deckListView;
+	@FXML
+	Label deckListLabel;
 
 	static Deck selectedDeck;
 
@@ -31,6 +34,7 @@ public class ManageDecksController implements Initializable {
 		viewButton.setDisable(bool);
 		deleteButton.setDisable(bool);
 		newDeckButton.setDisable(bool);
+		testButton.setDisable(bool);
 	}
 	
 	@Override
@@ -70,7 +74,7 @@ public class ManageDecksController implements Initializable {
 
 	@FXML
 	void createNewDeck() throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/new_deck.fxml"));
+		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/new_deck.fxml"));
 		Parent root = loader.load();
 		Stage newDeckDialog = new Stage();
 		((Initializable) loader.getController()).initialize(null, null);
@@ -89,6 +93,20 @@ public class ManageDecksController implements Initializable {
 
 	@FXML
 	void viewDeck() throws IOException {
-		Navi.goTo("/resources/manage.fxml", viewButton);
+		Stage currentStage = (Stage) viewButton.getScene().getWindow();
+		Parent root = FXMLLoader.load(this.getClass().getResource("/managecards2.fxml"));
+		double w = currentStage.getWidth(), h = currentStage.getHeight();
+		currentStage.setScene(new Scene(root));
+		currentStage.setHeight(h); currentStage.setWidth(w);
+		currentStage.show();
+	}
+	
+	@FXML void startTest() throws IOException {
+		Stage currentStage = (Stage) viewButton.getScene().getWindow();
+		Parent root = FXMLLoader.load(this.getClass().getResource("/test.fxml"));
+		double w = currentStage.getWidth(), h = currentStage.getHeight();
+		currentStage.setScene(new Scene(root));
+		currentStage.setHeight(h); currentStage.setWidth(w);
+		currentStage.show();
 	}
 }
