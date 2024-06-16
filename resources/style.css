@@ -15,7 +15,7 @@
 
 .button:hover{
     -fx-background-color: #ffe51e;
-    -fx-border-width: 2px;
+    -fx-border-width: 1px;
     -fx-border-color: #FF0000;
     -fx-border-style: solid;
 }
@@ -117,4 +117,14 @@
 .table-row-cell: highlighted {
     -fx-background-color: #81c483;
     -fx-background-radius: 15px;
+}
+
+.text-field{
+	-fx-background-color: #FFFFFF;
+	-fx-background-radius: 10px;
+	-fx-border-color: #0000FF;
+	-fx-border-radius: 10px;
+	-fx-border-width: 1px;
+	-fx-prompt-text-fill: #0000FF80;
+	-fx-text-fill: #000000;
 }

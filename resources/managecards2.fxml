@@ -13,12 +13,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.control.Label?>
 
 <BorderPane prefHeight="450.0" prefWidth="680.0" styleClass="anchor-pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageCardsController">
    <center>
       <AnchorPane>
          <children>
             <TableView fx:id="cardTable" layoutX="14.0" layoutY="6.4" minWidth="400.0" onMouseClicked="#getSelectedCard" prefHeight="385.0" prefWidth="457.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      	      <placeholder>
+     			<Label text="Chưa có thẻ nào, bạn hãy thêm thẻ nhé :3"/>
+    		  </placeholder>
               <columns>
                   <TableColumn fx:id="frontCol" editable="false" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="-1.0" text="Mặt trước" />
                   <TableColumn fx:id="backCol" editable="false" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="-1.0" text="Mặt sau" />

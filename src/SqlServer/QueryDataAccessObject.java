@@ -20,9 +20,9 @@ public class QueryDataAccessObject {
 
 			} else {
 				System.out.println("Chưa có bảng flashcards, tiến hành tạo bảng.");
-				String sql = "CREATE TABLE flashcards(" + "ID BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, "
-						+ "mattruoc varchar(255), " + "matsau varchar(255), " + "date_created datetime,"
-								+ " deckid BIGINT DEFAULT 1)";
+				String sql = "CREATE TABLE flashcards(ID BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, "
+						+ "mattruoc varchar(255), matsau varchar(255), date_created datetime,"
+						+ "deckid BIGINT DEFAULT 1, cardtype VARCHAR(20) DEFAULT 'normal'";
 				try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql)) {
 					preparedStatement.executeUpdate();
 					System.out.println("Tạo bảng Flashcards thành công!");
@@ -34,10 +34,9 @@ public class QueryDataAccessObject {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		try {
-			ResultSet res_set = DatabaseConnector.getConnection().getMetaData().getTables(null, null, "DECKS",
-					null);
+			ResultSet res_set = DatabaseConnector.getConnection().getMetaData().getTables(null, null, "DECKS", null);
 			if (res_set.next()) {
 				System.out.println("Đã có bảng Decks!");
 
@@ -52,7 +51,7 @@ public class QueryDataAccessObject {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-				
+
 				// Tạo bộ thẻ mặc định
 				String sql2 = "INSERT INTO DECKS (NAME) VALUES 'Bộ thẻ mặc định'";
 				try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql2)) {
@@ -67,9 +66,6 @@ public class QueryDataAccessObject {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-				
 
 	}
 
@@ -83,7 +79,7 @@ public class QueryDataAccessObject {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void insertCard(Card flashcard, Deck deck) {
 		String sql = "INSERT INTO Flashcards (mattruoc, matsau, date_created, deckid) VALUES (?, ?, ?, ?)";
 
@@ -112,6 +108,7 @@ public class QueryDataAccessObject {
 			e.printStackTrace();
 		}
 	}
+
 	public static ObservableList<Deck> getDeckList() {
 		String sql = "SELECT * FROM DECKS";
 		try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql);
@@ -128,7 +125,7 @@ public class QueryDataAccessObject {
 			return null;
 		}
 	}
-	
+
 	public static ObservableList<Card> getAllCards() {
 		String sql = "SELECT * FROM Flashcards";
 		try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql);
@@ -147,7 +144,7 @@ public class QueryDataAccessObject {
 			return null;
 		}
 	}
-	
+
 	public static ObservableList<Card> getCardsFromDeck(Deck deck) {
 		String sql = "SELECT * FROM Flashcards WHERE deckid = ?";
 		try {
@@ -169,7 +166,6 @@ public class QueryDataAccessObject {
 		}
 	}
 
-
 	public static Card findCard(String frontText) {
 		String sql = "SELECT * FROM Flashcards WHERE mattruoc = ?";
 		try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql);) {
@@ -189,7 +185,7 @@ public class QueryDataAccessObject {
 			return null;
 		}
 	}
-	
+
 	public static Card findCardInDeck(String frontText, Deck deck) {
 		String sql = "SELECT * FROM Flashcards WHERE mattruoc = ? AND deckid = ?";
 		try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql);) {
@@ -233,6 +229,27 @@ public class QueryDataAccessObject {
 		}
 	}
 
+	public static ObservableList<Card> getShuffledCardsFromDeck(Deck deck) {
+		String sql = "SELECT * FROM Flashcards WHERE deckid = ? ORDER BY RAND()";
+		try {
+			PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql);
+			preparedStatement.setInt(1, deck.getId());
+			ResultSet resultSet = preparedStatement.executeQuery();
+			ObservableList<Card> data = FXCollections.observableArrayList();
+			while (resultSet.next()) {
+				int id = resultSet.getInt("id");
+				String matTruoc = resultSet.getString("mattruoc");
+				String matSau = resultSet.getString("matsau");
+				String date_created = resultSet.getDate("date_created").toString();
+				data.add(new Card(id, matTruoc, matSau, date_created));
+			}
+			return data;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public static void deleteCard(Card card) {
 		String sql = "DELETE FROM Flashcards WHERE id = ?";
 		try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql);) {
@@ -243,6 +260,7 @@ public class QueryDataAccessObject {
 			e.printStackTrace();
 		}
 	}
+
 	public static void deleteDeck(Deck deck) {
 		String sql = "DELETE FROM Decks WHERE id = ?";
 		try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql);) {
@@ -252,7 +270,7 @@ public class QueryDataAccessObject {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		String sql2 = "DELETE FROM Flashcards WHERE deckid = ?";
 		try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql2);) {
 			preparedStatement.setInt(1, deck.getId());
@@ -262,6 +280,7 @@ public class QueryDataAccessObject {
 			e.printStackTrace();
 		}
 	}
+
 	public static void deleteAllCards() {
 		String sql = "DELETE FROM Flashcards";
 

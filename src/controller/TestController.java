@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import SqlServer.DatabaseConnector;
 import SqlServer.QueryDataAccessObject;
 import cards.Card;
 //import cards.DeckList;
@@ -16,44 +15,69 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-import javafx.scene.shape.*;
 
 public class TestController implements Initializable {
 	@FXML private TextFlow frontTextFlow, backTextFlow;
 	@FXML private Text frontText, backText;
-	@FXML private Button goBackButton, goToEditButton, showAnswerButton, nextCardButton;
+	@FXML private Button goBackButton, showAnswerButton, nextCardButton;
+	@FXML private TextField answerTextField;
 	
-	static int deckSize;
-	static int currentCardIndex = 0;
-	static ObservableList<Card> CardList;
+	int deckSize;
+	int currentCardIndex = 0;
+	ObservableList<Card> CardList;
 	static Scene previousScene;
     public static void setPreviousScene(Scene scene) {
     	previousScene = scene;
     }
     
+    int correctAnswerCount = 0;
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		CardList = QueryDataAccessObject.getCardsFromDeck(ManageDecksController.selectedDeck);
+		CardList = QueryDataAccessObject.getShuffledCardsFromDeck(ManageDecksController.selectedDeck);
 		deckSize = CardList.size();
 		if (deckSize > 0) {
 			Card currentCard = (currentCardIndex < deckSize) ? CardList.get(currentCardIndex) : CardList.getFirst();
 			frontText.setText(currentCard.getMatTruoc());
 			backText.setText(currentCard.getMatSau());
 		} else if (deckSize == 0) {
-			frontText.setText("Chưa có thẻ nào, bạn hãy đi thêm thẻ!");
-			goToEditButton.setDisable(true);
+			frontText.setText("Bộ thẻ chưa có thẻ nào, bạn hãy thêm thẻ!");
 			showAnswerButton.setDisable(true);
 			nextCardButton.setDisable(true);
 		}
 		backTextFlow.setVisible(false);
+		nextCardButton.setManaged(false);
 	}
 
+	@FXML
 	public void showAnswer(ActionEvent event) {
+		answerTextField.setText(answerTextField.getText().strip());
+		if (answerTextField.getText().equals(backText.getText()))
+		{
+			// báo đúng
+			backTextFlow.setStyle("-fx-background-color: #AFFD8C");
+			correctAnswerCount++;
+		}
+		else 
+		{
+			// báo sai
+			backTextFlow.setStyle("-fx-background-color: #FF899D");
+		}
+		
 		backTextFlow.setVisible(true);
+		
+		showAnswerButton.setManaged(false);
+		showAnswerButton.setVisible(false);
+		
+//		answerTextField.setManaged(false);
+//		answerTextField.setVisible(false);
+		
+		nextCardButton.setManaged(true);
+		nextCardButton.setVisible(true);
 	}
 
 	@FXML
@@ -67,27 +91,39 @@ public class TestController implements Initializable {
 	}
 
 	@FXML
-	public void goToEdit(ActionEvent event) throws IOException {
-//		Stage currentStage = (Stage) goToEditButton.getScene().getWindow();
-//		FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/card_edit.fxml"));
-//		Parent root = loader.load();
-//		EditController.setPreviousOption(3);
-//		EditController.setPreviousScene(goToEditButton.getScene());
-//		EditController.setPrevSelectedCard(CardList.get(currentCardIndex));
-//		((Initializable) loader.getController()).initialize(null, null);
-//		currentStage.setScene(new Scene(root));
-//		currentStage.show();
-	}
-
-	@FXML
 	public void goToNext(ActionEvent event) {
-		if (currentCardIndex+1 < deckSize)
+		if (currentCardIndex+1 < deckSize) {
 			currentCardIndex++;
-		else currentCardIndex = 0;
+			System.out.println("Next card index is " + currentCardIndex);
+			Card currentCard = CardList.get(currentCardIndex);
+			frontText.setText(currentCard.getMatTruoc());
+			backText.setText(currentCard.getMatSau());
+			backTextFlow.setVisible(false);
+			
+			nextCardButton.setManaged(false);
+			nextCardButton.setVisible(false);
+			
+	//		answerTextField.setManaged(true);
+	//		answerTextField.setVisible(true);
+			answerTextField.setText("");
+			
+			showAnswerButton.setManaged(true);
+			showAnswerButton.setVisible(true);
+		} else {
+			frontText.setText("Bạn đã kiểm tra xong!\nKết quả: "+correctAnswerCount+"/"+deckSize);
+			
+			nextCardButton.setManaged(false);
+			nextCardButton.setVisible(false);
+			
+			answerTextField.setManaged(false);
+			answerTextField.setVisible(false);
+			
+			showAnswerButton.setManaged(false);
+			showAnswerButton.setVisible(false);
+			
+			backTextFlow.setVisible(false);
+			
+		}
 		
-		Card currentCard = CardList.get(currentCardIndex);
-		frontText.setText(currentCard.getMatTruoc());
-		backTextFlow.setVisible(false);
-		backText.setText(currentCard.getMatSau());
 	}
 }

@@ -79,7 +79,8 @@ public class ManageDecksController implements Initializable {
 		Stage newDeckDialog = new Stage();
 		((Initializable) loader.getController()).initialize(null, null);
 		newDeckDialog.setScene(new Scene(root));
-		newDeckDialog.setTitle("Super Flashcard - Nhập tên thẻ mới");
+		newDeckDialog.setResizable(false);
+		newDeckDialog.setTitle("Super Flashcard - Nhập tên bộ thẻ mới");
 		newDeckDialog.showAndWait();
 		
 		this.initialize(null, null);

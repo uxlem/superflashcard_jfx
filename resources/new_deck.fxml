@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="400.0" styleClass="anchor-pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewDeckCon">
    <children>
-      <Button fx:id="addDeckButton" layoutX="151.0" layoutY="83.0" mnemonicParsing="false" onAction="#addDeck" text="Thêm bộ thẻ" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
+      <Button fx:id="addDeckButton" layoutX="138.0" layoutY="75.0" mnemonicParsing="false" onAction="#addDeck" prefHeight="30.0" prefWidth="123.0" text="Thêm bộ thẻ" AnchorPane.bottomAnchor="14.599999999999994" AnchorPane.leftAnchor="138.0" AnchorPane.rightAnchor="139.60000000000002" />
       <TextField fx:id="newDeckNameTextField" layoutX="29.0" layoutY="28.0" prefHeight="26.0" prefWidth="326.0" promptText="Nhập tên bộ thẻ mới..." AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0" />
    </children>
 </AnchorPane>
