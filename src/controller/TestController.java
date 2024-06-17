@@ -16,15 +16,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 public class TestController implements Initializable {
+	
 	@FXML private TextFlow frontTextFlow, backTextFlow;
 	@FXML private Text frontText, backText;
 	@FXML private Button goBackButton, showAnswerButton, nextCardButton;
 	@FXML private TextField answerTextField;
+	@FXML private AnchorPane rootAnchorPane;
+	@FXML private GridPane cardGridPane;
 	
 	int deckSize;
 	int currentCardIndex = 0;
@@ -51,6 +56,10 @@ public class TestController implements Initializable {
 		}
 		backTextFlow.setVisible(false);
 		nextCardButton.setManaged(false);
+		
+		frontTextFlow.maxWidthProperty().bind(rootAnchorPane.widthProperty().subtract(40));
+//		frontTextFlow.maxHeightProperty().bind(rootAnchorPane.heightProperty().subtract(1020));
+		
 	}
 
 	@FXML

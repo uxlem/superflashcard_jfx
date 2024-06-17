@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="myAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageDecksController">
    <children>
-      <ListView fx:id="deckListView" fixedCellSize="24.0" layoutX="78.0" layoutY="81.0" onMouseClicked="#setSelectedDeck" prefHeight="234.0" prefWidth="437.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="80.0" />
+      <ListView fx:id="deckListView" layoutX="78.0" layoutY="81.0" onMouseClicked="#setSelectedDeck" prefHeight="234.0" prefWidth="437.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="80.0" />
       <HBox alignment="CENTER" layoutY="358.0" prefHeight="41.0" prefWidth="600.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Button fx:id="newDeckButton" mnemonicParsing="false" onAction="#createNewDeck" text="Thêm bộ thẻ" />

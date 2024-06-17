@@ -56,6 +56,31 @@
     -fx-font-weight: bold;
 }
 
+
+.list-view{
+	-fx-background-color: #9AE5FC;
+    -fx-background-radius: 10px;
+}
+
+.list-cell{
+	-fx-cell-size: 40;
+	-fx-background-radius: 10px;
+	-fx-background-insets: 1;
+}
+.list-cell:even{
+	-fx-background-color: #EBF6FF;
+    
+}
+
+.list-cell:odd{
+	-fx-background-color: #E8F6FE;
+	
+}
+
+.list-cell:selected{
+	-fx-background-color: #0088DD;
+	
+}
 .table-view{
 
     -fx-background-color: #ffeb79;
