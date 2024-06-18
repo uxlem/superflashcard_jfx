@@ -16,9 +16,11 @@
             <Button fx:id="viewButton" mnemonicParsing="false" onAction="#viewDeck" text="Xem" />
             <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteDeck" text="Xoá" />
             <Button fx:id="testButton" mnemonicParsing="false" onAction="#startTest" text="Kiểm tra" />
+            <Button fx:id="importButton" mnemonicParsing="false" onAction="#goImport" text="Nhập..." />
+            <Button fx:id="exportButton" mnemonicParsing="false" onAction="#goExport" text="Xuất..." />
          </children>
       </HBox>
-      <Label fx:id="cardListLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="100.0" layoutY="44.0" stylesheets="@style.css" text="* Danh sách bộ thẻ *" textAlignment="CENTER" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="44.0">
+      <Label id="manageDeckLabel" fx:id="cardListLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="100.0" layoutY="44.0" stylesheets="@style.css" text="* Danh sách bộ thẻ *" textAlignment="CENTER" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="44.0">
          <font>
             <Font name="Montserrat Black" size="24.0" />
          </font>

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,10 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
-<?import javafx.scene.control.Label?>
 
 <BorderPane prefHeight="450.0" prefWidth="680.0" styleClass="anchor-pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageCardsController">
    <center>
@@ -21,7 +19,7 @@
          <children>
             <TableView fx:id="cardTable" layoutX="14.0" layoutY="6.4" minWidth="400.0" onMouseClicked="#getSelectedCard" prefHeight="385.0" prefWidth="457.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       	      <placeholder>
-     			<Label text="Chưa có thẻ nào, bạn hãy thêm thẻ nhé :3"/>
+     			<Label text="Chưa có thẻ nào, bạn hãy thêm thẻ nhé :3" />
     		  </placeholder>
               <columns>
                   <TableColumn fx:id="frontCol" editable="false" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="-1.0" text="Mặt trước" />
@@ -43,25 +41,17 @@
                   <RowConstraints minHeight="10.0" percentHeight="50.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TextFlow fx:id="frontTextFlow" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="175.0" styleClass="text-flow" textAlignment="CENTER">
+                  <TextFlow fx:id="previewFrontTextFlow" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="text-flow" textAlignment="CENTER">
                      <children>
-                        <Text fx:id="frontText" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;dummy text 1&gt;">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Text>
+                        <Label fx:id="pFLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="153.0" prefWidth="124.0" text="&lt;mattruoc preview&gt;" textAlignment="CENTER" wrapText="true" />
                      </children>
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </TextFlow>
-                  <TextFlow fx:id="backTextFlow" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="162.0" prefWidth="150.0" styleClass="text-flow" textAlignment="CENTER" GridPane.rowIndex="1">
+                  <TextFlow fx:id="previewBackTextFlow" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="text-flow" textAlignment="CENTER" GridPane.rowIndex="1">
                      <children>
-                        <Text fx:id="backText" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;dummy text 2&gt;">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Text>
+                        <Label fx:id="pBLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="152.0" prefWidth="133.0" text="&lt;matsau preview&gt;" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </TextFlow>
                </children>
@@ -89,9 +79,9 @@
                   <HBox alignment="CENTER_RIGHT" spacing="15.0" GridPane.columnIndex="1">
                      <children>
                         <Button fx:id="newCardButton" mnemonicParsing="false" onAction="#goToCreateNewCard" prefHeight="30.0" prefWidth="99.0" text="Thêm thẻ" />
-                        <Button fx:id="detailButton" mnemonicParsing="false" onAction="#goToDetails" prefHeight="30.0" prefWidth="130.0" text="Xem riêng thẻ" />
-                        <Button fx:id="editCardButton" mnemonicParsing="false" onAction="#goToEdit" text="Sửa thẻ" />
-                        <Button fx:id="deleteCardButton" mnemonicParsing="false" onAction="#goToDelete" text="Xoá thẻ..." />
+                        <Button fx:id="detailButton" mnemonicParsing="false" onAction="#goToDetails" prefHeight="30.0" prefWidth="110.0" text="Xem riêng" />
+                        <Button fx:id="editCardButton" mnemonicParsing="false" onAction="#goToEdit" text="Sửa" />
+                        <Button fx:id="deleteCardButton" mnemonicParsing="false" onAction="#goToDelete" text="Xoá" />
                      </children>
                      <padding>
                         <Insets right="20.0" />

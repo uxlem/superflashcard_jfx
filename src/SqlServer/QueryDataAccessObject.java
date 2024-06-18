@@ -96,6 +96,21 @@ public class QueryDataAccessObject {
 		}
 	}
 
+	public static void mergeCard(Card flashcard, Deck deck) {
+		String sql = "MERGE INTO Flashcards (mattruoc, matsau, date_created, deckid) KEY (mattruoc, deckid) VALUES (?, ?, ?, ?)";
+
+		try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql)) {
+			preparedStatement.setString(1, flashcard.getMatTruoc());
+			preparedStatement.setString(2, flashcard.getMatSau());
+			preparedStatement.setString(3, flashcard.getDate_Created());
+			preparedStatement.setInt(4, deck.getId());
+			preparedStatement.executeUpdate();
+			System.out.println("Thêm Card thành công!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void editCard(Card cardToEdit, String frontText, String backText) {
 		String sql = "UPDATE Flashcards SET mattruoc=?, matsau=? WHERE id = ?";
 		try (PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(sql);) {

@@ -42,6 +42,10 @@
 }
 
 .label{
+	-fx-font-size: 18;
+}
+
+.label #manageDeckLabel{
     -fx-font-family: 'Montserrat ExtraBold';
     -fx-font-size: 24;
 }

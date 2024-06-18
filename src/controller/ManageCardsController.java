@@ -18,12 +18,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 public class ManageCardsController implements Initializable{
@@ -54,6 +57,9 @@ public class ManageCardsController implements Initializable{
     
     static ResultSet resultSet = null;
     
+    @FXML private TextFlow previewFrontTextFlow, previewBackTextFlow;
+    @FXML private Label pFLabel, pBLabel;
+    
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
     	frontCol.setCellValueFactory(new PropertyValueFactory<>("matTruoc"));
@@ -62,6 +68,7 @@ public class ManageCardsController implements Initializable{
     	cardTable.setFixedCellSize(24.0);
     	frontCol.prefWidthProperty().bind(cardTable.widthProperty().multiply(0.5));
     	backCol.prefWidthProperty().bind(cardTable.widthProperty().multiply(0.5));
+    	
     	editCardButton.setDisable(true);
     	deleteCardButton.setDisable(true);
     	detailButton.setDisable(true);
@@ -134,12 +141,15 @@ public class ManageCardsController implements Initializable{
     				editCardButton.setDisable(false);
     				deleteCardButton.setDisable(false);
     				detailButton.setDisable(false);
+    				pFLabel.setText(selectedCard.getMatTruoc());
+    				pBLabel.setText(selectedCard.getMatSau());
     			}
     		else 
     			{
     				editCardButton.setDisable(true);
     				deleteCardButton.setDisable(true);
     				detailButton.setDisable(true);
+    				
     			}
         }
     	

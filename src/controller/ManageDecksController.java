@@ -1,12 +1,15 @@
 package controller;
 
 import java.awt.Label;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import SqlServer.QueryDataAccessObject;
+import cards.Card;
 import cards.Deck;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,13 +19,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.control.ListCell;
 
 public class ManageDecksController implements Initializable {
 
 	@FXML
-	private Button newDeckButton, deleteButton, viewButton, testButton;
+	private Button newDeckButton, deleteButton, viewButton, testButton, importButton, exportButton;
 	@FXML
 	ListView<Deck> deckListView;
 	@FXML
@@ -35,6 +39,9 @@ public class ManageDecksController implements Initializable {
 		deleteButton.setDisable(bool);
 		newDeckButton.setDisable(bool);
 		testButton.setDisable(bool);
+		
+		importButton.setDisable(bool);
+		exportButton.setDisable(bool);
 	}
 	
 	@Override
@@ -109,5 +116,36 @@ public class ManageDecksController implements Initializable {
 		currentStage.setScene(new Scene(root));
 		currentStage.setHeight(h); currentStage.setWidth(w);
 		currentStage.show();
+	}
+	
+	@FXML void goImport() {
+		ObservableList<Card> list = FXCollections.observableArrayList();
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Nhập từ file...");
+		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text file", "*.txt"),
+				new FileChooser.ExtensionFilter("All files", "*"));
+		File file = fileChooser.showOpenDialog((Stage) importButton.getScene().getWindow());
+		if (file != null)
+		{
+			list = importExport.ImportExport.Import(file.getAbsolutePath());
+			for (Card i : list) {
+				QueryDataAccessObject.mergeCard(i, selectedDeck);
+			}
+		}
+		
+	}
+	
+	@FXML void goExport() {
+		ObservableList<Card> list = QueryDataAccessObject.getCardsFromDeck(selectedDeck);
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Xuất thành file...");
+		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text file", "*.txt"),
+				new FileChooser.ExtensionFilter("All files", "*"));
+		File file = fileChooser.showSaveDialog((Stage) exportButton.getScene().getWindow());
+		if (file != null)
+		{
+			importExport.ImportExport.Export(list, file.getAbsolutePath());
+		}
+		
 	}
 }
