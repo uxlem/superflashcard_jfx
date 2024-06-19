@@ -1,6 +1,6 @@
 package controller;
 
-import java.awt.Label;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -17,10 +17,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import reminder_streak_checker.DailyCheck;
 import javafx.scene.control.ListCell;
 
 public class ManageDecksController implements Initializable {
@@ -28,9 +30,9 @@ public class ManageDecksController implements Initializable {
 	@FXML
 	private Button newDeckButton, deleteButton, viewButton, testButton, importButton, exportButton;
 	@FXML
-	ListView<Deck> deckListView;
+	private ListView<Deck> deckListView;
 	@FXML
-	Label deckListLabel;
+	private Label deckListLabel, streakLabel;
 
 	static Deck selectedDeck;
 
@@ -60,7 +62,9 @@ public class ManageDecksController implements Initializable {
 			}
 		});
 		setDisableActionButton(true);
-
+		DailyCheck dcheck = new DailyCheck();
+		streakLabel.setText("Bạn đã báo danh "+ dcheck.getDayStreaks()+ " ngày liên tiếp!");
+		deckListLabel.setStyle("-fx-font-family: 'Montserrat ExtraBold'; -fx-font-size: 24");;
 	}
 
 	@FXML

@@ -20,10 +20,11 @@
             <Button fx:id="exportButton" mnemonicParsing="false" onAction="#goExport" text="Xuất..." />
          </children>
       </HBox>
-      <Label id="manageDeckLabel" fx:id="cardListLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="100.0" layoutY="44.0" stylesheets="@style.css" text="* Danh sách bộ thẻ *" textAlignment="CENTER" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="44.0">
+      <Label id="manageDeckLabel" fx:id="deckListLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="100.0" layoutY="44.0" stylesheets="@style.css" text="* Danh sách bộ thẻ *" textAlignment="CENTER" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="44.0">
          <font>
             <Font name="Montserrat Black" size="24.0" />
          </font>
       </Label>
+      <Label fx:id="streakLabel" alignment="CENTER" layoutX="123.0" layoutY="328.0" text="Bạn đã báo danh được ... ngày liên tiếp!" textAlignment="CENTER" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>
