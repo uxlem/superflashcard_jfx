@@ -157,7 +157,13 @@ public class ManageCardsController implements Initializable{
 
     @FXML void goToDelete(ActionEvent event) {
     	QueryDataAccessObject.deleteCard(selectedCard);
+    	int newSelectedCardIndex = cardTable.getItems().indexOf(selectedCard)-1;
     	cardTable.getItems().remove(selectedCard);
+    	if (newSelectedCardIndex >= 0)
+    		selectedCard = cardTable.getItems().get(newSelectedCardIndex);
+    	else
+    		selectedCard = cardTable.getItems().getFirst();
+    	
     	cardTable.refresh();
     }
 }
