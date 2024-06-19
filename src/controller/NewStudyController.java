@@ -17,16 +17,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.scene.shape.*;
 
 public class NewStudyController implements Initializable {
-	@FXML private TextFlow frontTextFlow, backTextFlow;
-	@FXML private Text frontText, backText;
+	@FXML private TextArea frontTextArea, backTextArea;
 	@FXML private Button goBackButton, goToEditButton, showAnswerButton, nextCardButton;
-	
+	@FXML private RowConstraints row1Constraints;
 	static int deckSize;
 	static int currentCardIndex = 0;
 	static ObservableList<Card> CardList;
@@ -41,19 +41,23 @@ public class NewStudyController implements Initializable {
 		deckSize = CardList.size();
 		if (deckSize > 0) {
 			Card currentCard = (currentCardIndex < deckSize) ? CardList.get(currentCardIndex) : CardList.getFirst();
-			frontText.setText(currentCard.getMatTruoc());
-			backText.setText(currentCard.getMatSau());
+			frontTextArea.setText(currentCard.getMatTruoc());
+			backTextArea.setText(currentCard.getMatSau());
 		} else if (deckSize == 0) {
-			frontText.setText("Chưa có thẻ nào, bạn hãy đi thêm thẻ!");
+			frontTextArea.setText("Chưa có thẻ nào, bạn hãy đi thêm thẻ!");
 			goToEditButton.setDisable(true);
 			showAnswerButton.setDisable(true);
 			nextCardButton.setDisable(true);
 		}
-		backTextFlow.setVisible(false);
+		backTextArea.setVisible(false);
+		backTextArea.setManaged(false);
+		row1Constraints.setPercentHeight(0);
 	}
 
 	public void showAnswer(ActionEvent event) {
-		backTextFlow.setVisible(true);
+		backTextArea.setVisible(true);
+		backTextArea.setManaged(true);
+		row1Constraints.setPercentHeight(50);
 	}
 
 	@FXML
@@ -86,8 +90,11 @@ public class NewStudyController implements Initializable {
 		else currentCardIndex = 0;
 		
 		Card currentCard = CardList.get(currentCardIndex);
-		frontText.setText(currentCard.getMatTruoc());
-		backTextFlow.setVisible(false);
-		backText.setText(currentCard.getMatSau());
+		frontTextArea.setText(currentCard.getMatTruoc());
+		backTextArea.setVisible(false);
+		backTextArea.setManaged(false);
+		row1Constraints.setPercentHeight(0);
+		backTextArea.setText(currentCard.getMatSau());
+		
 	}
 }

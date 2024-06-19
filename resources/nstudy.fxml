@@ -1,46 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane styleClass="anchor-pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewStudyController">
    <children>
-      <GridPane alignment="CENTER" layoutY="65.0" vgap="4.0" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="60.0" vgrow="ALWAYS" />
-          <RowConstraints maxHeight="-Infinity" minHeight="10.0" percentHeight="40.0" vgrow="ALWAYS" />
-            <RowConstraints />
-        </rowConstraints>
+      <GridPane layoutY="64.80000305175781" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
+            <RowConstraints fx:id="row1Constraints" minHeight="10.0" percentHeight="50.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <TextFlow fx:id="frontTextFlow" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" textAlignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS">
+            <AnchorPane>
                <children>
-                  <Text fx:id="frontText" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;dummy text 1&gt;">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
+                  <TextArea fx:id="frontTextArea" editable="false" layoutX="31.2" layoutY="8.0" prefHeight="89.0" prefWidth="539.0" promptText="&lt;dummy text 1&gt;" styleClass="displayTextArea" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0" />
                </children>
-            </TextFlow>
-            <TextFlow fx:id="backTextFlow" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" textAlignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+            </AnchorPane>
+            <AnchorPane GridPane.rowIndex="1">
                <children>
-                  <Text fx:id="backText" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;dummy text 2&gt;">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
+                  <TextArea fx:id="backTextArea" editable="false" layoutX="31.2" layoutY="8.0" prefHeight="89.0" prefWidth="539.0" promptText="&lt;dummy text 2&gt;" styleClass="displayTextArea" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="5.0" />
                </children>
-            </TextFlow>
+            </AnchorPane>
          </children>
       </GridPane>
       <ToolBar prefHeight="40.0" prefWidth="600.0" styleClass="toolbar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

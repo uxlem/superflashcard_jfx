@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -57,8 +58,7 @@ public class ManageCardsController implements Initializable{
     
     static ResultSet resultSet = null;
     
-    @FXML private TextFlow previewFrontTextFlow, previewBackTextFlow;
-    @FXML private Label pFLabel, pBLabel;
+    @FXML private TextArea previewFrontTextArea, previewBackTextArea;
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -141,8 +141,8 @@ public class ManageCardsController implements Initializable{
     				editCardButton.setDisable(false);
     				deleteCardButton.setDisable(false);
     				detailButton.setDisable(false);
-    				pFLabel.setText(selectedCard.getMatTruoc());
-    				pBLabel.setText(selectedCard.getMatSau());
+    				previewFrontTextArea.setText(selectedCard.getMatTruoc());
+    				previewBackTextArea.setText(selectedCard.getMatSau());
     			}
     		else 
     			{

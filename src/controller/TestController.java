@@ -15,17 +15,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 public class TestController implements Initializable {
 	
-	@FXML private TextFlow frontTextFlow, backTextFlow;
-	@FXML private Text frontText, backText;
+	@FXML private TextArea frontTextArea, backTextArea;
+	@FXML private RowConstraints row1Constraints;
 	@FXML private Button goBackButton, showAnswerButton, nextCardButton;
 	@FXML private TextField answerTextField;
 	@FXML private AnchorPane rootAnchorPane;
@@ -47,37 +49,38 @@ public class TestController implements Initializable {
 		deckSize = CardList.size();
 		if (deckSize > 0) {
 			Card currentCard = (currentCardIndex < deckSize) ? CardList.get(currentCardIndex) : CardList.getFirst();
-			frontText.setText(currentCard.getMatTruoc());
-			backText.setText(currentCard.getMatSau());
+			frontTextArea.setText(currentCard.getMatTruoc());
+			backTextArea.setText(currentCard.getMatSau());
 		} else if (deckSize == 0) {
-			frontText.setText("Bộ thẻ chưa có thẻ nào, bạn hãy thêm thẻ!");
+			frontTextArea.setText("Bộ thẻ chưa có thẻ nào, bạn hãy thêm thẻ!");
 			showAnswerButton.setDisable(true);
 			nextCardButton.setDisable(true);
 		}
-		backTextFlow.setVisible(false);
+		backTextArea.setVisible(false);
+		backTextArea.setManaged(false);
+		row1Constraints.setPercentHeight(0);
 		nextCardButton.setManaged(false);
-		
-		frontTextFlow.maxWidthProperty().bind(rootAnchorPane.widthProperty().subtract(40));
-//		frontTextFlow.maxHeightProperty().bind(rootAnchorPane.heightProperty().subtract(1020));
 		
 	}
 
 	@FXML
 	public void showAnswer(ActionEvent event) {
 		answerTextField.setText(answerTextField.getText().strip());
-		if (answerTextField.getText().equals(backText.getText()))
+		if (answerTextField.getText().equals(backTextArea.getText()))
 		{
 			// báo đúng
-			backTextFlow.setStyle("-fx-background-color: #AFFD8C");
+			answerTextField.setStyle("-fx-background-color: #AFFD8C");
 			correctAnswerCount++;
 		}
 		else 
 		{
 			// báo sai
-			backTextFlow.setStyle("-fx-background-color: #FF899D");
+			answerTextField.setStyle("-fx-background-color: #FF899D");
 		}
 		
-		backTextFlow.setVisible(true);
+		backTextArea.setVisible(true);
+		backTextArea.setManaged(true);
+		row1Constraints.setPercentHeight(40);
 		
 		showAnswerButton.setManaged(false);
 		showAnswerButton.setVisible(false);
@@ -101,13 +104,16 @@ public class TestController implements Initializable {
 
 	@FXML
 	public void goToNext(ActionEvent event) {
+		answerTextField.setStyle("-fx-background-color: #FFFFFF");
 		if (currentCardIndex+1 < deckSize) {
 			currentCardIndex++;
 			System.out.println("Next card index is " + currentCardIndex);
 			Card currentCard = CardList.get(currentCardIndex);
-			frontText.setText(currentCard.getMatTruoc());
-			backText.setText(currentCard.getMatSau());
-			backTextFlow.setVisible(false);
+			frontTextArea.setText(currentCard.getMatTruoc());
+			backTextArea.setText(currentCard.getMatSau());
+			backTextArea.setVisible(false);
+			backTextArea.setManaged(false);
+			row1Constraints.setPercentHeight(0);
 			
 			nextCardButton.setManaged(false);
 			nextCardButton.setVisible(false);
@@ -119,7 +125,7 @@ public class TestController implements Initializable {
 			showAnswerButton.setManaged(true);
 			showAnswerButton.setVisible(true);
 		} else {
-			frontText.setText("Bạn đã kiểm tra xong!\nKết quả: "+correctAnswerCount+"/"+deckSize);
+			frontTextArea.setText("Bạn đã kiểm tra xong!\nKết quả: "+correctAnswerCount+"/"+deckSize);
 			
 			nextCardButton.setManaged(false);
 			nextCardButton.setVisible(false);
@@ -130,7 +136,9 @@ public class TestController implements Initializable {
 			showAnswerButton.setManaged(false);
 			showAnswerButton.setVisible(false);
 			
-			backTextFlow.setVisible(false);
+			backTextArea.setVisible(false);
+			backTextArea.setManaged(false);
+			row1Constraints.setPercentHeight(0);
 			
 		}
 		

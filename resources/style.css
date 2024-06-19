@@ -157,3 +157,28 @@
 	-fx-prompt-text-fill: #0000FF80;
 	-fx-text-fill: #000000;
 }
+
+.text-area {
+	-fx-font-family: 'Montserrat';
+	-fx-font-size: 18;
+	-fx-border-color: #EF883A;
+	-fx-border-style: solid;
+	-fx-border-radius: 5px;
+	-fx-text-box-border: -fx-control-inner-background;
+}
+
+
+.text-area .scroll-pane{
+	-fx-faint-focus-color: #00000000;
+	-fx-background-radius: 15px;
+	-fx-border-radius: 10px;
+}
+
+.text-area .scroll-pane .content {
+	-fx-background-color: #FFFFFF;
+	-fx-background-insets: 1;
+	-fx-background-radius: 5px;
+}
+.text-area .scroll-pane .content .text {
+    -fx-text-alignment: center;
+}

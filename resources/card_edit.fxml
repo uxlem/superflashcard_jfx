@@ -25,11 +25,11 @@
             <RowConstraints minHeight="10.0" percentHeight="50.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextArea fx:id="frontTextArea" prefHeight="76.0" prefWidth="518.0" GridPane.rowIndex="1">
+            <TextArea fx:id="frontTextArea" prefHeight="76.0" prefWidth="518.0" wrapText="true" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font></TextArea>
-            <TextArea fx:id="backTextArea" prefHeight="92.0" prefWidth="517.0" GridPane.rowIndex="3">
+            <TextArea fx:id="backTextArea" prefHeight="92.0" prefWidth="517.0" wrapText="true" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font></TextArea>
