@@ -63,7 +63,7 @@ public class ManageDecksController implements Initializable {
 		});
 		setDisableActionButton(true);
 		DailyCheck dcheck = new DailyCheck();
-		streakLabel.setText("Bạn đã báo danh "+ dcheck.getDayStreaks()+ " ngày liên tiếp!");
+		streakLabel.setText("Bạn đã điểm danh "+ dcheck.getDayStreaks()+ " ngày liên tiếp!");
 		deckListLabel.setStyle("-fx-font-family: 'Montserrat ExtraBold'; -fx-font-size: 24");;
 	}
 
