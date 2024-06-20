@@ -39,7 +39,7 @@ public class ManageDecksController implements Initializable {
 	private void setDisableActionButton(boolean bool) {
 		viewButton.setDisable(bool);
 		deleteButton.setDisable(bool);
-		newDeckButton.setDisable(bool);
+		//newDeckButton.setDisable(bool);
 		testButton.setDisable(bool);
 		
 		importButton.setDisable(bool);
