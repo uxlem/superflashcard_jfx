@@ -5,7 +5,7 @@
 ### Tóm tắt: 
 * [Chuẩn bị] Tải thư viện JavaFX và H2, thêm vào Modulepath/Classpath của Project trên máy mọi người.
 
-* Tải mã nguồn: thư mục/zip src ở bên trên hoặc [tại phần Release](https://github.com/uxlem/sieuungdung_jfx/releases)
+* Tải mã nguồn: thư mục/zip 'src' và 'resources' ở bên trên hoặc [tại phần Release](https://github.com/uxlem/sieuungdung_jfx/releases)
 
 * Copy thư mục src trên này vào project trống trên máy của mọi người, thêm VM Arguments và chạy.
 
