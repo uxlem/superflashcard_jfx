@@ -1,5 +1,10 @@
 # Ứng dụng Super FlashCard
-
+Bài tập lớn môn Lập trình hướng đối tượng
+## Các thành viên cùng nhóm
+- Đoàn Văn Thắng
+- Nguyễn Minh Giáp [(github.com/hanbanthan)](https://github.com/hanbanthan)
+- Vũ Huy Hoàng
+- Nguyễn Nhật Quang
 ## Hướng dẫn dịch và chạy ứng dụng
 
 ### Tóm tắt: 
